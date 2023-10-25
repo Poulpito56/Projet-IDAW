@@ -30,13 +30,13 @@
             } else {
                 if($data -> type == 0){
                     $request = $pdo->prepare("INSERT INTO ALIMENT (ID_ALIMENT, ID_REGIME, NOM, IMAGE_URL, TYPE, BICARBONATE, CALCIUM, CHLORURE, FLUOR, MAGNESIUM, NITRATE, POTASSIUM, SILICE, SODIUM, SULFATE)
-                        VALUES ('{$data->id_aliment}', '{$data->id_regime}', '{$data->nom}', '{$data->image_url}', '{$data->type}', 
-                        '{$data->bicarbonate}', '{$data->calcium}', '{$data->chlorure}', '{$data->fluor}', '{$data->magnesium}', '{$data->nitrate}', '{$data->potassium}', '{$data->silice}', '{$data->sodium}', '{$data->sulfate}')
+                        VALUES ({$data->id_aliment}, {$data->id_regime}, '{$data->nom}', '{$data->image_url}', {$data->type}, 
+                        {$data->bicarbonate}, {$data->calcium}, {$data->chlorure}, {$data->fluor}, {$data->magnesium}, {$data->nitrate}, {$data->potassium}, {$data->silice}, {$data->sodium}, {$data->sulfate})
                     ");
                 } else {
                     $request = $pdo->prepare("INSERT INTO ALIMENT (ID_ALIMENT, ID_REGIME, NOM, IMAGE_URL, TYPE, GLUCIDE, ENERGIE, GRAS, FIBRE, PROTEINE, SEL, GRAISSES_SATUREES, SUCRE) 
-                        VALUES ('{$data->id_aliment}', '{$data->id_regime}', '{$data->nom}', '{$data->image_url}', '{$data->type}', 
-                        '{$data->glucide}'), '{$data->energie}'), '{$data->gras}'), '{$data->fibre}'), '{$data->proteine}'), '{$data->sel}'), '{$data->graisses_saturees}'), '{$data->sucre}')
+                        VALUES ({$data->id_aliment}, {$data->id_regime}, '{$data->nom}', '{$data->image_url}', {$data->type}, 
+                        {$data->glucide}), {$data->energie}), {$data->gras}), {$data->fibre}), {$data->proteine}), {$data->sel}), {$data->graisses_saturees}), {$data->sucre})
                     ");
 
                 }
@@ -82,7 +82,7 @@
                 $updates = [];
         
                 if (isset($data->id_regime)) {
-                    $updates[] = "ID_REGIME = '{$data->id_regime}'";
+                    $updates[] = "ID_REGIME = {$data->id_regime}";
                 }
                 
                 if (isset($data->nom)) {
@@ -94,79 +94,79 @@
                 }
                 
                 if (isset($data->type)) {
-                    $updates[] = "TYPE = '{$data->type}'";
+                    $updates[] = "TYPE = {$data->type}";
                 }
                 
                 if (isset($data->glucide)) {
-                    $updates[] = "GLUCIDE = '{$data->glucide}'";
+                    $updates[] = "GLUCIDE = {$data->glucide}";
                 }
                 
                 if (isset($data->energie)) {
-                    $updates[] = "ENERGIE = '{$data->energie}'";
+                    $updates[] = "ENERGIE = {$data->energie}";
                 }
                 
                 if (isset($data->gras)) {
-                    $updates[] = "GRAS = '{$data->gras}'";
+                    $updates[] = "GRAS = {$data->gras}";
                 }
                 
                 if (isset($data->fibre)) {
-                    $updates[] = "FIBRE = '{$data->fibre}'";
+                    $updates[] = "FIBRE = {$data->fibre}";
                 }
                 
                 if (isset($data->proteine)) {
-                    $updates[] = "PROTEINE = '{$data->proteine}'";
+                    $updates[] = "PROTEINE = {$data->proteine}";
                 }
                 
                 if (isset($data->sel)) {
-                    $updates[] = "SEL = '{$data->sel}'";
+                    $updates[] = "SEL = {$data->sel}";
                 }
                 
                 if (isset($data->graisses_saturees)) {
-                    $updates[] = "GRAISSES_SATUREES = '{$data->graisses_saturees}'";
+                    $updates[] = "GRAISSES_SATUREES = {$data->graisses_saturees}";
                 }
                 
                 if (isset($data->sucre)) {
-                    $updates[] = "SUCRE = '{$data->sucre}'";
+                    $updates[] = "SUCRE = {$data->sucre}";
                 }
                 
                 if (isset($data->bicarbonate)) {
-                    $updates[] = "BICARBONATE = '{$data->bicarbonate}'";
+                    $updates[] = "BICARBONATE = {$data->bicarbonate}";
                 }
                 
                 if (isset($data->calcium)) {
-                    $updates[] = "CALCIUM = '{$data->calcium}'";
+                    $updates[] = "CALCIUM = {$data->calcium}";
                 }
                 
                 if (isset($data->chlorure)) {
-                    $updates[] = "CHLORURE = '{$data->chlorure}'";
+                    $updates[] = "CHLORURE = {$data->chlorure}";
                 }
                 
                 if (isset($data->fluor)) {
-                    $updates[] = "FLUOR = '{$data->fluor}'";
+                    $updates[] = "FLUOR = {$data->fluor}";
                 }
                 
                 if (isset($data->magnesium)) {
-                    $updates[] = "MAGNESIUM = '{$data->magnesium}'";
+                    $updates[] = "MAGNESIUM = {$data->magnesium}";
                 }
                 
                 if (isset($data->nitrate)) {
-                    $updates[] = "NITRATE = '{$data->nitrate}'";
+                    $updates[] = "NITRATE = {$data->nitrate}";
                 }
                 
                 if (isset($data->potassium)) {
-                    $updates[] = "POTASSIUM = '{$data->potassium}'";
+                    $updates[] = "POTASSIUM = {$data->potassium}";
                 }
                 
                 if (isset($data->silice)) {
-                    $updates[] = "SILICE = '{$data->silice}'";
+                    $updates[] = "SILICE = {$data->silice}";
                 }
                 
                 if (isset($data->sodium)) {
-                    $updates[] = "SODIUM = '{$data->sodium}'";
+                    $updates[] = "SODIUM = {$data->sodium}";
                 }
                 
                 if (isset($data->sulfate)) {
-                    $updates[] = "SULFATE = '{$data->sulfate}'";
+                    $updates[] = "SULFATE = {$data->sulfate}";
                 }
 
                 if (!empty($updates)) {
