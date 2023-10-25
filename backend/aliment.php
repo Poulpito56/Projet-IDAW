@@ -19,7 +19,7 @@
                 exit;
             }
 
-            $request = $pdo->prepare("SELECT * FROM aliment WHERE id_aliment = '" . $id . "'");
+            $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE ID_ALIMENT = '" . $id . "'");
             
 
             if($request->execute()){
