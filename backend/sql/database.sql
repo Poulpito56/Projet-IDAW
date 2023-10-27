@@ -107,25 +107,25 @@ create table REGIME_ALIMENTAIRE
 );
 
 alter table ALIMENT add constraint FK_RESPECTER foreign key (ID_REGIME)
-      references REGIME_ALIMENTAIRE (ID_REGIME) on delete restrict on update restrict;
+      references REGIME_ALIMENTAIRE (ID_REGIME) on delete restrict on update cascade;
 
 alter table ALLERGIE add constraint FK_ALLERGIE foreign key (LOGIN)
-      references PERSONNE (LOGIN) on delete restrict on update restrict;
+      references PERSONNE (LOGIN) on delete restrict on update cascade;
 
 alter table ALLERGIE add constraint FK_ALLERGIE2 foreign key (ID_ALIMENT)
-      references ALIMENT (ID_ALIMENT) on delete restrict on update restrict;
+      references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table CONSOMMER add constraint FK_CONSOMMER foreign key (LOGIN)
-      references PERSONNE (LOGIN) on delete restrict on update restrict;
+      references PERSONNE (LOGIN) on delete restrict on update cascade;
 
 alter table CONSOMMER add constraint FK_CONSOMMER2 foreign key (ID_ALIMENT)
-      references ALIMENT (ID_ALIMENT) on delete restrict on update restrict;
+      references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table CONTIENIR add constraint FK_CONTIENIR foreign key (ID_ALIMENT)
-      references ALIMENT (ID_ALIMENT) on delete restrict on update restrict;
+      references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table CONTIENIR add constraint FK_CONTIENIR2 foreign key (ALI_ID_ALIMENT)
-      references ALIMENT (ID_ALIMENT) on delete restrict on update restrict;
+      references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table PERSONNE add constraint FK_SUIVRE foreign key (ID_REGIME)
       references REGIME_ALIMENTAIRE (ID_REGIME) on delete restrict on update restrict;
