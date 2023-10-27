@@ -2,9 +2,9 @@
 <html>
 
 <body>
-  <script src="js/create_user.js" defer></script>
-  CREER USER
-  <form id="login_form" method="POST">
+  <script src="js/connexion.js" defer></script>
+  CONNEXION
+  <form id="login_form" method="POST" action="index.php">
     <table>
       <tr>
         <th>Login :</th>
@@ -21,7 +21,8 @@
     </table>
   </form>
   <p id="message"></p>
-</body>
+  <a href="create_user.php">creer</a>
 
+</body>
 
 </html>

@@ -25,4 +25,3 @@
     
     /*** close the database connection ***/
     $pdo = null;
-?>
