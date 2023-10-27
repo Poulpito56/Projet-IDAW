@@ -3,16 +3,15 @@
 /* Date de cr�ation :  24/10/2023 17:09:29                      */
 /*==============================================================*/
 
-
-drop table if exists ALIMENT;
+drop table if exists CONTIENIR;
 
 drop table if exists ALLERGIE;
 
 drop table if exists CONSOMMER;
 
-drop table if exists CONTIENIR;
-
 drop table if exists PERSONNE;
+
+drop table if exists ALIMENT;
 
 drop table if exists REGIME_ALIMENTAIRE;
 
@@ -22,7 +21,7 @@ drop table if exists REGIME_ALIMENTAIRE;
 create table ALIMENT
 (
    ID_ALIMENT           BIGINT,
-   ID_REGIME            int not null,
+   ID_REGIME            int null,
    NOM                  char(63) not null,
    IMAGE_URL            varchar(255),
    TYPE                 smallint,
@@ -53,7 +52,7 @@ create table ALIMENT
 create table ALLERGIE
 (
    LOGIN                char(63) not null,
-   ID_ALIMENT           int not null,
+   ID_ALIMENT           BIGINT,
    primary key (LOGIN, ID_ALIMENT)
 );
 
@@ -63,7 +62,7 @@ create table ALLERGIE
 create table CONSOMMER
 (
    LOGIN                char(63) not null,
-   ID_ALIMENT           int not null,
+   ID_ALIMENT           BIGINT,
    QUANTITE             decimal(15,2) not null,
    primary key (LOGIN, ID_ALIMENT)
 );
@@ -73,8 +72,8 @@ create table CONSOMMER
 /*==============================================================*/
 create table CONTIENIR
 (
-   ID_ALIMENT           int not null,
-   ALI_ID_ALIMENT       int not null,
+   ID_ALIMENT           BIGINT,
+   ALI_ID_ALIMENT       BIGINT,
    POURCENTAGE          smallint not null,
    primary key (ID_ALIMENT, ALI_ID_ALIMENT)
 );
