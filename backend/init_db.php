@@ -53,26 +53,26 @@ function createInsertValues($aliment)
     $aliment_obj->IMAGE_URL = isset($aliment["image_url"]) ? $aliment["image_url"] : NULL;
     if (isWater($aliment)) {
       $aliment_obj->TYPE = 0;
-      $aliment_obj->BICARBONATE = isset($aliment["nutriments"]["bicarbonate_100g"]) ? $aliment["nutriments"]["bicarbonate_100g"] : -1;
-      $aliment_obj->CALCIUM = isset($aliment["nutriments"]["calcium_100g"]) ? $aliment["nutriments"]["calcium_100g"] : -1;
-      $aliment_obj->CHLORURE = isset($aliment["nutriments"]["chloride_100g"]) ? $aliment["nutriments"]["chloride_100g"] : -1;
-      $aliment_obj->FLUOR = isset($aliment["nutriments"]["en-fluor_100g"]) ? $aliment["nutriments"]["en-fluor_100g"] : -1;
-      $aliment_obj->MAGNESIUM = isset($aliment["nutriments"]["magnesium_100g"]) ? $aliment["nutriments"]["magnesium_100g"] : -1;
-      $aliment_obj->NITRATE = isset($aliment["nutriments"]["nitrate_100g"]) ? $aliment["nutriments"]["nitrate_100g"] : -1;
-      $aliment_obj->POTASSIUM = isset($aliment["nutriments"]["potassium_100g"]) ? $aliment["nutriments"]["potassium_100g"] : -1;
-      $aliment_obj->SILICE = isset($aliment["nutriments"]["silica_100g"]) ? $aliment["nutriments"]["silica_100g"] : -1;
-      $aliment_obj->SODIUM = isset($aliment["nutriments"]["sodium_100g"]) ? $aliment["nutriments"]["sodium_100g"] : -1;
-      $aliment_obj->SULFATE = isset($aliment["nutriments"]["sulphate_100g"]) ? $aliment["nutriments"]["sulphate_100g"] : -1;
+      $aliment_obj->BICARBONATE = isset($aliment["nutriments"]["bicarbonate_100g"]) ? $aliment["nutriments"]["bicarbonate_100g"] : NULL;
+      $aliment_obj->CALCIUM = isset($aliment["nutriments"]["calcium_100g"]) ? $aliment["nutriments"]["calcium_100g"] : NULL;
+      $aliment_obj->CHLORURE = isset($aliment["nutriments"]["chloride_100g"]) ? $aliment["nutriments"]["chloride_100g"] : NULL;
+      $aliment_obj->FLUOR = isset($aliment["nutriments"]["en-fluor_100g"]) ? $aliment["nutriments"]["en-fluor_100g"] : NULL;
+      $aliment_obj->MAGNESIUM = isset($aliment["nutriments"]["magnesium_100g"]) ? $aliment["nutriments"]["magnesium_100g"] : NULL;
+      $aliment_obj->NITRATE = isset($aliment["nutriments"]["nitrate_100g"]) ? $aliment["nutriments"]["nitrate_100g"] : NULL;
+      $aliment_obj->POTASSIUM = isset($aliment["nutriments"]["potassium_100g"]) ? $aliment["nutriments"]["potassium_100g"] : NULL;
+      $aliment_obj->SILICE = isset($aliment["nutriments"]["silica_100g"]) ? $aliment["nutriments"]["silica_100g"] : NULL;
+      $aliment_obj->SODIUM = isset($aliment["nutriments"]["sodium_100g"]) ? $aliment["nutriments"]["sodium_100g"] : NULL;
+      $aliment_obj->SULFATE = isset($aliment["nutriments"]["sulphate_100g"]) ? $aliment["nutriments"]["sulphate_100g"] : NULL;
     } else {
       $aliment_obj->TYPE = 1;
-      $aliment_obj->GLUCIDE = isset($aliment["nutriments"]["carbohydrates_100g"]) ? $aliment["nutriments"]["carbohydrates_100g"] : -1;
-      $aliment_obj->ENERGIE = isset($aliment["nutriments"]["energy-kcal_100g"]) ? $aliment["nutriments"]["energy-kcal_100g"] : -1;
-      $aliment_obj->GRAS = isset($aliment["nutriments"]["fat_100g"]) ? $aliment["nutriments"]["fat_100g"] : -1;
-      $aliment_obj->FIBRE = isset($aliment["nutriments"]["fiber_100g"]) ? $aliment["nutriments"]["fiber_100g"] : -1;
-      $aliment_obj->PROTEINE = isset($aliment["nutriments"]["proteins_100g"]) ? $aliment["nutriments"]["proteins_100g"] : -1;
-      $aliment_obj->SEL = isset($aliment["nutriments"]["salt_100g"]) ? $aliment["nutriments"]["salt_100g"] : -1;
-      $aliment_obj->GRAISSES_SATUREES = isset($aliment["nutriments"]["saturated-fat_100g"]) ? $aliment["nutriments"]["saturated-fat_100g"] : -1;
-      $aliment_obj->SUCRE = isset($aliment["nutriments"]["sugars_100g"]) ? $aliment["nutriments"]["sugars_100g"] : -1;
+      $aliment_obj->GLUCIDE = isset($aliment["nutriments"]["carbohydrates_100g"]) ? $aliment["nutriments"]["carbohydrates_100g"] : NULL;
+      $aliment_obj->ENERGIE = isset($aliment["nutriments"]["energy-kcal_100g"]) ? $aliment["nutriments"]["energy-kcal_100g"] : NULL;
+      $aliment_obj->GRAS = isset($aliment["nutriments"]["fat_100g"]) ? $aliment["nutriments"]["fat_100g"] : NULL;
+      $aliment_obj->FIBRE = isset($aliment["nutriments"]["fiber_100g"]) ? $aliment["nutriments"]["fiber_100g"] : NULL;
+      $aliment_obj->PROTEINE = isset($aliment["nutriments"]["proteins_100g"]) ? $aliment["nutriments"]["proteins_100g"] : NULL;
+      $aliment_obj->SEL = isset($aliment["nutriments"]["salt_100g"]) ? $aliment["nutriments"]["salt_100g"] : NULL;
+      $aliment_obj->GRAISSES_SATUREES = isset($aliment["nutriments"]["saturated-fat_100g"]) ? $aliment["nutriments"]["saturated-fat_100g"] : NULL;
+      $aliment_obj->SUCRE = isset($aliment["nutriments"]["sugars_100g"]) ? $aliment["nutriments"]["sugars_100g"] : NULL;
     }
     return $aliment_obj;
   }
@@ -91,7 +91,11 @@ foreach ($data as $aliment) {
         if (is_string($valeur)) {
           $query_second_part = $query_second_part . "'" . str_replace("'", '', $valeur) . "',";
         } else {
-          $query_second_part = $query_second_part . $valeur . ",";
+          if (is_null($valeur)) {
+            $query_second_part = $query_second_part . "null,";
+          } else {
+            $query_second_part = $query_second_part . $valeur . ",";
+          }
         }
       }
 
