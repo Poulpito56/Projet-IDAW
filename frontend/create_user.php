@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-<script src="js/create_user.js"></script>
-<form id="login_form" action="index.php" method="POST">
+<script src="js/create_user.js" defer></script>
+<form id="login_form" method="POST">
   <table>
     <tr>
       <th>Login :</th>
-      <td><input type="text" name="login"></td>
+      <td><input id="login" type="text" name="login"></td>
     </tr>
     <tr>
       <th>Mot de passe :</th>
-      <td><input type="password" name="password"></td>
+      <td><input id="password" type="password" name="password"></td>
     </tr>
     <tr>
       <th></th>
-      <td><input type="submit" value="Se connecter..." /></td>
+      <td id="validate-button"><input type="submit" value="Se connecter..." /></td>
     </tr>
   </table>
+  <p id="message"></p>
 </form>
 
 </html>

@@ -9,7 +9,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $data = json_decode(file_get_contents('php://input'));
 
 
-    if (!isset($data->login) || !isset($data->password) || !isset($data->admin)) {
+    if (!isset($data->login) || !isset($data->password)) {
       http_response_code(400);
       echo json_encode(["message" => "Les champs manquants."]);
     } else {
@@ -20,21 +20,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $sport = isset($data->sport) ? $data->sport : -1;
 
       $sql = "INSERT INTO PERSONNE (LOGIN,ID_REGIME,PASSWORD,SEXE,ADMIN,MAIL,AGE,SPORT)
-              VALUES ('$data->login',$id_regime,'$data->password',$sexe,$data->admin,'$mail',$age,$sport)";
-      echo $sql;
+              VALUES ('$data->login',$id_regime,'$data->password',$sexe,false,'$mail',$age,$sport)";
       $request = $pdo->prepare($sql);
 
-      if ($request->execute()) {
-        echo "prout";
+      try {
+        $request->execute();
         http_response_code(201);
-        echo json_encode(["message" => "Personne créé avec succès."]);
-      } else {
-        echo "pet";
+        echo json_encode(["message" => "Personne créée avec succès."]);
+      } catch (PDOException $e) {
+        echo json_encode(["message" => $e->getMessage()]);
         http_response_code(500);
-        echo json_encode(["message" => "Erreur lors de la création de la personne."]);
       }
-
-      echo "n'importekoi";
     }
     break;
 }
