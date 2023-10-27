@@ -1,29 +1,22 @@
 function afficherAliments(){
+      $(document).ready(function(){
+            $("#alimentTable").DataTable({
+                  ajax: {
+                        url: "http://localhost/Projet%20IDAW/backend/aliments.php",
+                        dataSrc: ''
+                  },
+                  columns: [
+                        { data: 'NOM'},
+                        { data: 'ID_ALIMENT'},
+                        { data: 'ENERGIE'},
+                        { data: 'IMAGE_URL',
+                        render: function(data){ return '<img src="'+data+'" style="height:70px;"/>'}}
+                        
+                  ]
+
+            });
+      })
       
-      const req = new XMLHttpRequest();
-
-      req.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                  console.log(JSON.parse(req.response));
-
-                  const body = document.getElementById('alimentTableBody');
-                  body.innerHTML ='';
-
-                  JSON.parse(req.response).forEach(aliment => {
-
-                        const ligne = document.createElement('tr');
-
-                        ligne.innerHTML = `<td>${aliment.NOM}</td>
-                                          <td>${aliment.ID_ALIMENT}</td>
-                                          <td>${aliment.ENERGIE}</td>
-                                          <td><img src="${aliment.IMAGE_URL}"></td>
-                                          `;
-                        body.appendChild(ligne);
-                      });
-            }
-      }
-      req.open("GET", "http://localhost/Projet%20IDAW/backend/aliments.php");
-      req.send();
 }
 
 afficherAliments();
