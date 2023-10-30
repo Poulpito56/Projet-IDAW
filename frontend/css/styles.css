@@ -1,9 +1,9 @@
-body{
+body {
     font-family: 'Roboto';
+    padding-top: 100px;
 }
 
-.code-barre{
+.code-barre {
     font-family: 'Libre Barcode EAN13 Text';
     font-size: 120px;
 }
-
