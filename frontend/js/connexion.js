@@ -4,9 +4,24 @@ request.onreadystatechange = function () {
   if (request.readyState == 4) {
     if (request.status !== 200) {
       mess = document.getElementById('message');
-      mess.innerHTML = JSON.parse(request.response).message
+      mess.innerHTML = request.response;
     } else {
-      window.location.href = "index.php";
+      // Si l'utilisateur existe bien, on crée une session pour rester connecté
+      const data = { "login": document.getElementById('login').value };
+
+      fetch('script_connexion.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(data => {
+          window.location.href = 'index.php';
+        })
+        .catch(error => {
+          console.error('Erreur :', error);
+        });
     }
   }
 };

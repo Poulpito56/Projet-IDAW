@@ -6,7 +6,21 @@ request.onreadystatechange = function () {
       mess = document.getElementById('message');
       mess.innerHTML = JSON.parse(request.response).message
     } else {
-      window.location.href = "index.php";
+      const data = { "login": document.getElementById('login').value };
+
+      fetch('script_connexion.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(data => {
+          window.location.href = 'index.php';
+        })
+        .catch(error => {
+          console.error('Erreur :', error);
+        });
     }
   }
 };

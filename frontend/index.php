@@ -1,3 +1,16 @@
+<?php
+// Démarrer la session
+session_start();
+
+// Vérifier si l'utilisateur est déjà connecté
+if (!isset($_SESSION['utilisateur'])) {
+  header('Location: connexion.php');
+  exit();
+}
+
+// Pour tout le reste de cette page, on sait que $_SESSION['utilisateur'] existe
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -17,13 +30,11 @@
 
 <body>
   <?php
-  require_once('header.php');
-  if (isset($_POST['page'])) {
-    require_once($_POST['page'] . '.php');
-  } else {
-    require_once('accueil.php');
-  }
-  require_once('footer.php');
+  require_once('pages/header.php');
+  echo 'Bienvenue ' . $_SESSION['utilisateur'] . '<br>';
+  $page = (isset($_POST['page'])) ? $_POST['page'] : 'accueil';
+  require_once('pages/' . $page . '.php');
+  require_once('pages/footer.php');
   ?>
 </body>
 
