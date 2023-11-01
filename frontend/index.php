@@ -7,8 +7,30 @@ if (!isset($_SESSION['utilisateur'])) {
   header('Location: connexion.php');
   exit();
 }
-
 // Pour tout le reste de cette page, on sait que $_SESSION['utilisateur'] existe
+
+// La page par défaut est le français
+if (isset($_POST['page'])) {
+  $_SESSION['page'] = $_POST['page'];
+  header("Location: index.php");
+} else {
+  if (!isset($_SESSION['page'])) {
+    $_SESSION['page'] = 'accueil';
+  }
+}
+
+// La langue par défaut est le français
+if (isset($_POST['lang'])) {
+  $_SESSION['lang'] = $_POST['lang'];
+  header("Location: index.php");
+} else {
+  if (!isset($_SESSION['lang'])) {
+    $_SESSION['lang'] = 'fr';
+  }
+}
+
+global $tra;
+$tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json'));
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +38,7 @@ if (!isset($_SESSION['utilisateur'])) {
 
 <head>
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +54,9 @@ if (!isset($_SESSION['utilisateur'])) {
 <body>
   <?php
   require_once('pages/header.php');
-  echo 'Bienvenue ' . $_SESSION['utilisateur'] . '<br>';
-  $page = (isset($_POST['page'])) ? $_POST['page'] : 'accueil';
-  require_once('pages/' . $page . '.php');
+  echo '<div class="page">';
+  require_once('pages/' . $_SESSION['page'] . '.php');
+  echo '</div>';
   require_once('pages/footer.php');
   ?>
 </body>

@@ -8,11 +8,11 @@
     <table>
       <tr>
         <th>Login :</th>
-        <td><input id="login" type="text" name="login" value="admin"></td>
+        <td><input id="login" type="text" name="login" value="admin" pattern="[A-Za-z0-9_@!?. ]+" required></td>
       </tr>
       <tr>
         <th>Mot de passe :</th>
-        <td><input id="password" type="password" name="password" value="admin_mdpcomplike"></td>
+        <td><input id="password" type="password" name="password" value="admin_mdpcomplike" pattern="[A-Za-z0-9_@!?. ]+" required></td>
       </tr>
       <tr>
         <th></th>

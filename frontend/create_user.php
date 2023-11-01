@@ -8,15 +8,15 @@
     <table>
       <tr>
         <th>Login :</th>
-        <td><input id="login" type="text" name="login"></td>
+        <td><input id="login" type="text" name="login" pattern="[A-Za-z0-9_@!?. ]+" required></td>
       </tr>
       <tr>
         <th>Mot de passe :</th>
-        <td><input id="password" type="password" name="password"></td>
+        <td><input id="password" type="password" name="password" pattern="[A-Za-z0-9_@!?. ]+" required></td>
       </tr>
       <tr>
         <th></th>
-        <td id="validate-button"><input type="submit" value="Se connecter..." /></td>
+        <td id=" validate-button"><input type="submit" value="Se connecter..." /></td>
       </tr>
     </table>
   </form>
