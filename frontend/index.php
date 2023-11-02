@@ -15,7 +15,7 @@ if (isset($_POST['page'])) {
   header("Location: index.php");
 } else {
   if (!isset($_SESSION['page'])) {
-    $_SESSION['page'] = 'accueil';
+    $_SESSION['page'] = 'home';
   }
 }
 

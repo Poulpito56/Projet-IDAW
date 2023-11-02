@@ -11,8 +11,20 @@ header {
   background-color: rgb(229, 229, 229);
 }
 
+.page-logo-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .logo-site {
   width: 100px;
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .navbar {
