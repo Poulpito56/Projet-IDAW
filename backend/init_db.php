@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+session_unset();
+session_destroy();
+
 try {
   require_once('init_pdo.php');
 
