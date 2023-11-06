@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (isset($_POST['lang'])) {
+  $_SESSION['lang'] = $_POST['lang'];
+  header("Location: index.php");
+} else {
+  if (!isset($_SESSION['lang'])) {
+    $_SESSION['lang'] = 'fr';
+  }
+}
+
+$tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json'));
+?>
+
 <!DOCTYPE html>
 <html>
 
