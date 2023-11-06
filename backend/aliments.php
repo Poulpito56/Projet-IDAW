@@ -6,7 +6,7 @@
     switch ($_SERVER['REQUEST_METHOD']){
 
         case 'GET':
-            $request = $pdo->prepare("SELECT * FROM ALIMENT ORDER BY ID_ALIMENT ASC");
+            $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE TYPE = 0 OR TYPE = 1 ORDER BY ID_ALIMENT ASC");
 
             if(!$request->execute()){
                 http_response_code(500);

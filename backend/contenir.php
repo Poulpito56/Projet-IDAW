@@ -18,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       exit;
     }
 
-    $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE ID_ALIMENT = '" . $id . "'");
+    $request = $pdo->prepare("SELECT * FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "'");
 
 
     if ($request->execute()) {
@@ -36,44 +36,29 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $data = json_decode(file_get_contents('php://input'));
 
 
-    if (!isset($data->id_aliment) || !isset($data->nom) || !isset($data->type)) {
+    if (!isset($data->id_aliment) || !isset($data->ali_id_aliment) || !isset($data->pourcentage)) {
       http_response_code(400);
-      echo json_encode(["message" => "Les champs 'Code barre', 'Nom' et 'Type' sont obligatoires."]);
+      echo json_encode(["message" => "Les champs 'plat', 'aliment' et 'poucentage' sont obligatoires."]);
     } else {
 
       $aliment_obj = new stdClass();
 
-      $aliment_obj->ID_ALIMENT = $data->id_aliment;
       $aliment_obj->NOM = $data->nom;
-      $aliment_obj->TYPE = $data->type;
+      $aliment_obj->TYPE = "2";
       $aliment_obj->ID_REGIME = isset($data->id_regime) ? $data->id_regime : NULL;
       $aliment_obj->IMAGE_URL = isset($data->image_url) ? $data->image_url : NULL;
+    
+    $aliment_obj->GLUCIDE = isset($data->glucide) ? $data->glucide : NULL;
+    $aliment_obj->ENERGIE = isset($data->energie) ? $data->energie : NULL;
+    $aliment_obj->GRAS = isset($data->gras) ? $data->gras : NULL;
+    $aliment_obj->FIBRE = isset($data->fibre) ? $data->fibre : NULL;
+    $aliment_obj->PROTEINE = isset($data->proteine) ? $data->proteine : NULL;
+    $aliment_obj->SEL = isset($data->sel) ? $data->sel : NULL;
+    $aliment_obj->GRAISSES_SATUREES = isset($data->graisses_saturees) ? $data->graisses_saturees : NULL;
+    $aliment_obj->SUCRE = isset($data->sucre) ? $data->sucre : NULL;
 
-      if ($data->type == 0) {
-        $aliment_obj->BICARBONATE = isset($data->bicarbonate) ? $data->bicarbonate : NULL;
-        $aliment_obj->CALCIUM = isset($data->calcium) ? $data->calcium : NULL;
-        $aliment_obj->CHLORURE = isset($data->chlorure) ? $data->chlorure : NULL;
-        $aliment_obj->FLUOR = isset($data->fluor) ? $data->fluor : NULL;
-        $aliment_obj->MAGNESIUM = isset($data->magnesium) ? $data->magnesium : NULL;
-        $aliment_obj->NITRATE = isset($data->nitrate) ? $data->nitrate : NULL;
-        $aliment_obj->POTASSIUM = isset($data->potassium) ? $data->potassium : NULL;
-        $aliment_obj->SILICE = isset($data->silice) ? $data->silice : NULL;
-        $aliment_obj->SODIUM = isset($data->sodium) ? $data->sodium : NULL;
-        $aliment_obj->SULFATE = isset($data->sulfate) ? $data->sulfate : NULL;
-
-        $query_first_part = "INSERT INTO ALIMENT (ID_ALIMENT,NOM,TYPE,ID_REGIME,IMAGE_URL,BICARBONATE,CALCIUM,CHLORURE,FLUOR,MAGNESIUM,NITRATE,POTASSIUM,SILICE,SODIUM,SULFATE) VALUES (";
-      } else {
-        $aliment_obj->GLUCIDE = isset($data->glucide) ? $data->glucide : NULL;
-        $aliment_obj->ENERGIE = isset($data->energie) ? $data->energie : NULL;
-        $aliment_obj->GRAS = isset($data->gras) ? $data->gras : NULL;
-        $aliment_obj->FIBRE = isset($data->fibre) ? $data->fibre : NULL;
-        $aliment_obj->PROTEINE = isset($data->proteine) ? $data->proteine : NULL;
-        $aliment_obj->SEL = isset($data->sel) ? $data->sel : NULL;
-        $aliment_obj->GRAISSES_SATUREES = isset($data->graisses_saturees) ? $data->graisses_saturees : NULL;
-        $aliment_obj->SUCRE = isset($data->sucre) ? $data->sucre : NULL;
-
-        $query_first_part = "INSERT INTO ALIMENT (ID_ALIMENT,NOM,TYPE,ID_REGIME,IMAGE_URL,GLUCIDE,ENERGIE,GRAS,FIBRE,PROTEINE,SEL,GRAISSES_SATUREES,SUCRE) VALUES (";
-      }
+    $query_first_part = "INSERT INTO ALIMENT (NOM,TYPE,ID_REGIME,IMAGE_URL,GLUCIDE,ENERGIE,GRAS,FIBRE,PROTEINE,SEL,GRAISSES_SATUREES,SUCRE) VALUES (";
+    
 
       try {
         $query_second_part = "";
@@ -118,7 +103,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
           http_response_code(204); // 204 No Content pour indiquer que la ressource a été supprimée avec succès
         } else {
           http_response_code(500);
-          echo json_encode(["message" => "Erreur lors de la suppression de l'aliment {$id}."]);
+          echo json_encode(["message" => "Erreur lors de la suppression du plat {$id}."]);
         }
       } catch (PDOException $e) {
         http_response_code(500);
@@ -146,17 +131,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
       }
 
       if (isset($data->nom)) {
-        $updates[] = "NOM = '{$data->nom}'";
+        $updates[] = "NOM = {$data->nom}";
       }
-
-      if (isset($data->image_url)) {
-        $updates[] = "IMAGE_URL = '{$data->image_url}'";
-      }
-
-      if (isset($data->type)) {
-        $updates[] = "TYPE = {$data->type}";
-      }
-
+      
       if (isset($data->glucide)) {
         $updates[] = "GLUCIDE = {$data->glucide}";
       }
@@ -189,45 +166,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $updates[] = "SUCRE = {$data->sucre}";
       }
 
-      if (isset($data->bicarbonate)) {
-        $updates[] = "BICARBONATE = {$data->bicarbonate}";
-      }
-
-      if (isset($data->calcium)) {
-        $updates[] = "CALCIUM = {$data->calcium}";
-      }
-
-      if (isset($data->chlorure)) {
-        $updates[] = "CHLORURE = {$data->chlorure}";
-      }
-
-      if (isset($data->fluor)) {
-        $updates[] = "FLUOR = {$data->fluor}";
-      }
-
-      if (isset($data->magnesium)) {
-        $updates[] = "MAGNESIUM = {$data->magnesium}";
-      }
-
-      if (isset($data->nitrate)) {
-        $updates[] = "NITRATE = {$data->nitrate}";
-      }
-
-      if (isset($data->potassium)) {
-        $updates[] = "POTASSIUM = {$data->potassium}";
-      }
-
-      if (isset($data->silice)) {
-        $updates[] = "SILICE = {$data->silice}";
-      }
-
-      if (isset($data->sodium)) {
-        $updates[] = "SODIUM = {$data->sodium}";
-      }
-
-      if (isset($data->sulfate)) {
-        $updates[] = "SULFATE = {$data->sulfate}";
-      }
 
       if (!empty($updates)) {
         // Construire la requête SQL UPDATE avec les champs à mettre à jour

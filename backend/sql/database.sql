@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de cr�ation :  24/10/2023 17:09:29                      */
+/* Date de création :  24/10/2023 17:09:29                      */
 /*==============================================================*/
 
 drop table if exists CONTIENIR;
@@ -20,7 +20,7 @@ drop table if exists REGIME_ALIMENTAIRE;
 /*==============================================================*/
 create table ALIMENT
 (
-   ID_ALIMENT           BIGINT,
+   ID_ALIMENT           BIGINT AUTO_INCREMENT,
    ID_REGIME            int null,
    NOM                  char(63) not null,
    IMAGE_URL            varchar(255),
