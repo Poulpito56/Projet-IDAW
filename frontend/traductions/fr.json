@@ -6,5 +6,7 @@
   "food": "Aliment",
   "log_out": "Déconnection",
   "language": "Langue",
-  "back": "Retour"
+  "back": "Retour",
+  "add_dish": "Ajouter un plat",
+  "plat": "Plat"
 }
