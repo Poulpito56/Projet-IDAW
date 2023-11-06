@@ -130,3 +130,13 @@ alter table CONTIENIR add constraint FK_CONTIENIR2 foreign key (ALI_ID_ALIMENT)
 alter table PERSONNE add constraint FK_SUIVRE foreign key (ID_REGIME)
       references REGIME_ALIMENTAIRE (ID_REGIME) on delete restrict on update restrict;
 
+INSERT INTO `regime_alimentaire` (`ID_REGIME`, `VEGETARIEN`, `VEGAN`, `PESCETARIEN`) VALUES
+(1, 0, 0, 0),
+(2, 0, 0, 1),
+(3, 1, 0, 0),
+(4, 0, 1, 0);
+
+INSERT INTO `personne` (`LOGIN`, `ID_REGIME`, `PASSWORD`, `SEXE`, `ADMIN`, `MAIL`, `AGE`, `SPORT`) VALUES
+('admin', NULL, 'admin_mdpcomplike', NULL, 1, '', NULL, NULL);
+
+COMMIT;

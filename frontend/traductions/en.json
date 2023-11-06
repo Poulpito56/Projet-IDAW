@@ -6,7 +6,21 @@
   "food": "Food",
   "log_out": "Log out",
   "language": "Language",
-  "back": "Back",
   "plat": "Plat",
-  "add_dish": "Add a dish"
+  "add_dish": "Add a dish",
+  "login": "Username",
+  "password": "Password",
+  "gender": "Gender",
+  "email": "Email",
+  "age": "age",
+  "dietary_preferences": "Dietary preferences",
+  "physical_activity": "Physical activity",
+  "omnivore": "Omnivore",
+  "pescetarian": "Pescetarian",
+  "vegetarian": "Vegetarian",
+  "vegan": "Vegan",
+  "unspecified": "Unspecified",
+  "female": "Female",
+  "male": "Male",
+  "back": "Back"
 }
