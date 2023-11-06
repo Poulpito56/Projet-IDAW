@@ -101,25 +101,36 @@ switch ($_SERVER['REQUEST_METHOD']) {
     }
     break;
 
+  
   case 'DELETE':
-    $data = json_decode(file_get_contents('php://input'));
-
-    if (!isset($data->id_aliment)) {
-      http_response_code(400);
-      echo json_encode(["message" => "Le champ 'Code barre' est obligatoire."]);
-    } else {
-      $request = $pdo->prepare("DELETE FROM ALIMENT WHERE ID_ALIMENT = {$data->id_aliment}");
-
-      if (!$request->execute()) {
+    // Analyser l'URL pour obtenir l'identifiant de l'aliment à supprimer
+    parse_str($_SERVER['QUERY_STRING'], $query);
+    if (isset($query['id_aliment'])) {
+      $id = $query['id_aliment'];
+  
+      // Requête SQL pour supprimer l'aliment
+      $sql = "DELETE FROM ALIMENT WHERE ID_ALIMENT = :id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+  
+      try {
+        if ($stmt->execute()) {
+          http_response_code(204); // 204 No Content pour indiquer que la ressource a été supprimée avec succès
+          echo json_encode(["message" => "Aliment supprimé avec succès."]);
+        } else {
+          http_response_code(500);
+          echo json_encode(["message" => "Erreur lors de la suppression de l'aliment."]);
+        }
+      } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(["message" => "Erreur lors de la suppression de l'aliment."]);
-      } else {
-        // retrieve data from database using fetch(PDO::FETCH_OBJ) and
-        http_response_code(204);
-        echo json_encode(["message" => "Aliment créé avec succès."]);
+        echo json_encode(["message" => "Erreur : " . $e->getMessage()]);
       }
+    } else {
+      http_response_code(400);
+      echo json_encode(["message" => "L'identifiant de l'aliment à supprimer doit être spécifié dans l'URL."]);
     }
     break;
+    
 
   case 'PUT':
     $data = json_decode(file_get_contents('php://input'));
