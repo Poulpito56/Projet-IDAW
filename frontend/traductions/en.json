@@ -20,5 +20,8 @@
   "unspecified": "Unspecified",
   "female": "Female",
   "male": "Male",
+  "create_user": "Create user",
+  "connect": "Connect",
+  "connexion": "Connection",
   "back": "Back"
 }

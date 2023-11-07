@@ -20,5 +20,8 @@
   "unspecified": "Non spécifié",
   "female": "Femme",
   "male": "Homme",
+  "create_user": "Créer nouvel utilisateur",
+  "connect": "Se connecter",
+  "connexion": "Connexion",
   "back": "Retour"
 }
