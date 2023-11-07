@@ -17,7 +17,7 @@ request.onreadystatechange = function () {
         body: JSON.stringify(data)
       })
         .then(data => {
-          location.reload();
+          window.location.href = "index.php";
         })
         .catch(error => {
           console.error('Erreur :', error);

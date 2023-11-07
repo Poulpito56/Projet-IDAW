@@ -1,5 +1,5 @@
 <script src="js/connexion.js" defer></script>
-<form id="login_form" method="POST" action="index.php">
+<form id="login_form" method="GET">
   <table>
     <tr>
       <th>Login :</th>
@@ -16,7 +16,7 @@
   </table>
 </form>
 <p id="message"></p>
-<form method="POST">
+<form method="GET">
   <button type="submit" class="nav-button">
     <input type="hidden" name="page" value="create_user">
     <img class="nav-img" src="imgs/logos/profil.png" alt="<?php echo $tra->create_user; ?>">

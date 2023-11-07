@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['log_out'])) {
+if (isset($_GET['log_out'])) {
   unset($_SESSION['utilisateur']);
   header('Location: index.php');
   exit();

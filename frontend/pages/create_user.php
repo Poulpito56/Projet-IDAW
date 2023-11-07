@@ -1,5 +1,5 @@
 <script src="js/create_user.js" defer></script>
-<form id="login_form" method="POST">
+<form id="login_form" method="GET">
   <table>
     <tr>
       <th><?php echo $tra->login; ?></th>
@@ -10,7 +10,7 @@
       <td><input id="password" type="password" name="password" pattern="[A-Za-z0-9_@!?. ]+" required></td>
     </tr>
     <?php
-    require_once('pages/personal_information_fields')
+    require_once('pages/personal_information_fields.php')
     ?>
     <tr>
       <th></th>
@@ -19,7 +19,7 @@
   </table>
 </form>
 <p id="message"></p>
-<form method="POST">
+<form method="GET">
   <button type="submit" class="nav-button">
     <input type="hidden" name="page" value="connexion">
     <img class="nav-img" src="imgs/logos/profil.png" alt="<?php echo $tra->connexion; ?>">

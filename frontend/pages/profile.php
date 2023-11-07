@@ -1,8 +1,8 @@
 <script src="js/modify_user.js" defer></script>
-<form id="login_form" method="POST">
+<form id="login_form" method="GET">
   <table>
     <?php
-    require_once('pages/personal_information_fields')
+    require_once('pages/personal_information_fields.php')
     ?>
     <tr>
       <td id="validate-button"><input type="submit" value="<?php echo $tra->validate; ?>" /></td>

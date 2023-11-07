@@ -3,9 +3,8 @@
 session_start();
 
 // La langue par défaut est le français
-if (isset($_POST['lang'])) {
-  $_SESSION['lang'] = $_POST['lang'];
-  header("Location: index.php");
+if (isset($_GET['lang'])) {
+  $_SESSION['lang'] = $_GET['lang'];
 } else {
   if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'fr';
@@ -13,9 +12,11 @@ if (isset($_POST['lang'])) {
 }
 
 // La page par défaut est home
-if (isset($_POST['page'])) {
-  $_SESSION['page'] = $_POST['page'];
-  header("Location: index.php");
+if (isset($_GET['page'])) {
+  $page = $_GET['page'];
+  if (($page !== 'connexion' && $page !== 'create_user') || !isset($_SESSION['utilisateur'])) {
+    $_SESSION['page'] = $page;
+  }
 } else {
   if (!isset($_SESSION['page'])) {
     $_SESSION['page'] = 'home';

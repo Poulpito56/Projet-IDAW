@@ -11,7 +11,7 @@ function change_lang()
 
 <footer>
   <img class="logo-site" src="imgs/logos/i_manger_mieux.png" alt="logo_site">
-  <form method="POST" class="lang-form">
+  <form method="GET" class="lang-form">
     <button type="submit" class="lang-button">
       <input type="hidden" name="lang" value="<?php echo change_lang(); ?>">
       <img class="lang-img" src="imgs/lang/<?php echo $_SESSION['lang']; ?>.png" alt="traduction">
