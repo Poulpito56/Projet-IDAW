@@ -23,7 +23,7 @@
       var personal_info = data[0];
       document.getElementById('dietary_preferences').value = personal_info.ID_REGIME;
       document.getElementById('gender').value = personal_info.SEXE;
-      document.getElementById('email').value = personal_info.MAIL;
+      document.getElementById('email').value = (personal_info.MAIL !== 'null') ? personal_info.MAIL : "" ;
       document.getElementById('age').value = personal_info.AGE;
       document.getElementById('physical_activity').value = personal_info.SPORT;
     })
