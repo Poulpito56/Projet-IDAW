@@ -7,6 +7,6 @@
             <th scope="col">image</th>
         </tr>
     </thead>
-    <tbody id="alimentTableBody">
+    <tbody>
     </tbody>
 </table>
