@@ -1,5 +1,6 @@
 const request = new XMLHttpRequest();
 
+
 request.onreadystatechange = function () {
   if (request.readyState == 4) {
     if (request.status !== 200) {
@@ -17,7 +18,7 @@ request.onreadystatechange = function () {
         body: JSON.stringify(data)
       })
         .then(data => {
-          window.location.href = "index.php";
+          window.location.href = "?page=home";
         })
         .catch(error => {
           console.error('Erreur :', error);
