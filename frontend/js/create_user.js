@@ -34,8 +34,8 @@ loginForm.addEventListener("submit", function (event) {
 })
 
 function insertNewUser() {
-  var dietary_preferences = document.querySelector('input[name="dietary_preferences"]:checked');
-  var gender = document.querySelector('input[name="gender"]:checked');
+  var dietary_preferences = document.getElementById('dietary_preferences').value;
+  var gender = document.getElementById('gender').value;
   var email = document.getElementById('email').value;
   var age = document.getElementById('age').value;
   var physical_activity = document.getElementById('physical_activity').value;

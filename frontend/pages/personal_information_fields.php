@@ -1,30 +1,22 @@
 <tr>
   <th><?php echo $tra->dietary_preferences; ?></th>
   <td>
-    <input type="radio" id="omnivore" name="dietary_preferences" value="1" checked>
-    <label for="omnivore"><?php echo $tra->omnivore; ?></label>
-
-    <input type="radio" id="pescetarian" name="dietary_preferences" value="2">
-    <label for="pescetarian"><?php echo $tra->pescetarian; ?></label>
-
-    <input type="radio" id="vegetarian" name="dietary_preferences" value="3">
-    <label for="vegetarian"><?php echo $tra->vegetarian; ?></label>
-
-    <input type="radio" id="vegan" name="dietary_preferences" value="4">
-    <label for="vegan"><?php echo $tra->vegan; ?></label>
+    <select id='dietary_preferences'>
+      <option value="1"><?php echo $tra->omnivore; ?></option>
+      <option value="2"><?php echo $tra->pescetarian; ?></option>
+      <option value="3"><?php echo $tra->vegetarian; ?></option>
+      <option value="4"><?php echo $tra->vegan; ?></option>
+    </select>
   </td>
 </tr>
 <tr>
   <th><?php echo $tra->gender; ?></th>
   <td>
-    <input type="radio" id="unspecified" name="gender" value="1" checked>
-    <label for="unspecified"><?php echo $tra->unspecified; ?></label>
-
-    <input type="radio" id="female" name="gender" value="2">
-    <label for="female"><?php echo $tra->female; ?></label>
-
-    <input type="radio" id="male" name="gender" value="3">
-    <label for="male"><?php echo $tra->male; ?></label>
+    <select id='gender'>
+      <option value="1"><?php echo $tra->unspecified; ?></option>
+      <option value="2"><?php echo $tra->female; ?></option>
+      <option value="3"><?php echo $tra->male; ?></option>
+    </select>
   </td>
 </tr>
 <tr>
