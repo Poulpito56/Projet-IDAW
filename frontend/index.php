@@ -18,9 +18,7 @@ if (isset($_GET['page'])) {
     $_SESSION['page'] = $page;
   }
 } else {
-  if (!isset($_SESSION['page'])) {
-    $_SESSION['page'] = 'home';
-  }
+  $_SESSION['page'] = 'home';
 }
 
 // Vérifier si l'utilisateur est déjà connecté
