@@ -36,14 +36,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $data = json_decode(file_get_contents('php://input'));
 
 
-    if (!isset($data->id_aliment) || !isset($data->nom) || !isset($data->type)) {
+    if (!isset($data->nom) || !isset($data->type)) {
       http_response_code(400);
-      echo json_encode(["message" => "Les champs 'Code barre', 'Nom' et 'Type' sont obligatoires."]);
+      echo json_encode(["message" => "Les champs 'Nom' et 'Type' sont obligatoires."]);
     } else {
 
       $aliment_obj = new stdClass();
 
-      $aliment_obj->ID_ALIMENT = $data->id_aliment;
+      $aliment_obj->ID_ALIMENT = isset($data->id_aliment) ? $data->id_aliment : "0";
       $aliment_obj->NOM = $data->nom;
       $aliment_obj->TYPE = $data->type;
       $aliment_obj->ID_REGIME = isset($data->id_regime) ? $data->id_regime : NULL;
@@ -114,12 +114,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $stmt->bindParam(':id', $id, PDO::PARAM_INT);
   
       try {
-        if ($stmt->execute()) {
-          http_response_code(204); // 204 No Content pour indiquer que la ressource a été supprimée avec succès
-        } else {
-          http_response_code(500);
-          echo json_encode(["message" => "Erreur lors de la suppression de l'aliment {$id}."]);
-        }
+        $stmt->execute();
+        http_response_code(204); // 204 No Content pour indiquer que la ressource a été supprimée avec succès
       } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(["message" => "Erreur : " . $e->getMessage()]);
