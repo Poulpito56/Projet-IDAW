@@ -1,13 +1,17 @@
 const button = document.getElementById("ajout_plat")
 const nom = document.querySelector("fieldset")
 const request2 = new XMLHttpRequest();
-
+const requestVerifType3 = new XMLHttpRequest();
 
 // button.addEventListener("click", afficherNom)
 
 
 
 button.addEventListener("click", ajoutPlatTemp)
+
+function verifType3(){
+  
+}
 
 function ajoutPlatTemp(){
     var plat = {
@@ -28,14 +32,9 @@ request2.onreadystatechange = function () {
       mess = document.getElementById('messageAjoutPlat');
       mess.innerHTML = JSON.parse(request2.response).message;
     } else {
-      // Si l'utilisateur existe bien, on crée une session pour rester connecté
-      const data = { "login": document.getElementById('login').value };
-
-      window.location.href = 'index.php';
-        
+      window.location.href = "?page=add_dish"
     }
   }
-    
 };
 /*
 var loginForm = document.getElementById('login_form');
