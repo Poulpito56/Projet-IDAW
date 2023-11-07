@@ -7,10 +7,27 @@ const requestVerifType3 = new XMLHttpRequest();
 
 
 
-button.addEventListener("click", ajoutPlatTemp)
+button.addEventListener("click", verifType3)
 
 function verifType3(){
-  
+  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?type=3', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Réponse du serveur non valide");
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error("Une erreur s'est produite : " + error);
+  });
 }
 
 function ajoutPlatTemp(){
@@ -24,7 +41,22 @@ function ajoutPlatTemp(){
       request2.send(JSON.stringify(plat));
 }
 
+requestVerifType3.onreadystatechange = function () {
+  if (requestVerifType3.readyState == 4) {
+    if (requestVerifType3.status !== 200) {
+      if((requestVerifType3.message) == ""){
+      mess.innerHTML = "ça marche";
 
+      }
+      mess = document.getElementById('messageAjoutPlat');
+      mess.innerHTML = JSON.parse(requestVerifType3.response).message;
+    } else {
+      mess = document.getElementById('messageAjoutPlat');
+      mess.innerHTML = JSON.parse(requestVerifType3.response).message;
+      //window.location.href = "?page=add_dish"
+    }
+  }
+};
 
 request2.onreadystatechange = function () {
   if (request2.readyState == 4) {

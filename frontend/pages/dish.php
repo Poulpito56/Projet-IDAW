@@ -1,3 +1,5 @@
+<script src="js/ajout_plat.js" defer></script>
+
 <h2>
     Ajouter un plat
 </h2>
