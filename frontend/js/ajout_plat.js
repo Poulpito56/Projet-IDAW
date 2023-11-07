@@ -1,6 +1,6 @@
 const button = document.getElementById("ajout_plat")
 const nom = document.querySelector("fieldset")
-const request = new XMLHttpRequest();
+const request2 = new XMLHttpRequest();
 
 
 // button.addEventListener("click", afficherNom)
@@ -16,17 +16,17 @@ function ajoutPlatTemp(){
         type: 3,
         image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png"
       };
-      request.open("POST", "http://localhost/Projet%20IDAW/backend/aliment.php", true);
-      request.send(JSON.stringify(plat));
+      request2.open("POST", "http://localhost/Projet%20IDAW/backend/aliment.php", true);
+      request2.send(JSON.stringify(plat));
 }
 
 
 
-request.onreadystatechange = function () {
-  if (request.readyState == 4) {
-    if (request.status !== 201) {
+request2.onreadystatechange = function () {
+  if (request2.readyState == 4) {
+    if (request2.status !== 201) {
       mess = document.getElementById('messageAjoutPlat');
-      mess.innerHTML = JSON.parse(request.response).message;
+      mess.innerHTML = JSON.parse(request2.response).message;
     } else {
       // Si l'utilisateur existe bien, on crée une session pour rester connecté
       const data = { "login": document.getElementById('login').value };
