@@ -16,7 +16,7 @@ request.onreadystatechange = function () {
         body: JSON.stringify(data)
       })
         .then(data => {
-          window.location.href = 'index.php';
+          location.reload();
         })
         .catch(error => {
           console.error('Erreur :', error);
@@ -45,7 +45,6 @@ function insertNewUser() {
     age: document.getElementById('age').value,
     sport: document.getElementById('physical_activity').value
   };
-  console.log(personne);
   request.open("POST", "http://localhost/Projet%20IDAW/backend/user.php", true);
   request.send(JSON.stringify(personne))
 }

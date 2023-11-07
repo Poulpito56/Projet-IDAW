@@ -10,3 +10,4 @@
         <?php echo $tra->plat; ?>
       </button>
     </form>
+</div>

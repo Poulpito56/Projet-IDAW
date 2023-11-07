@@ -2,14 +2,17 @@
 // Démarrer la session
 session_start();
 
-// Vérifier si l'utilisateur est déjà connecté
-if (!isset($_SESSION['utilisateur'])) {
-  header('Location: connexion.php');
-  exit();
+// La langue par défaut est le français
+if (isset($_POST['lang'])) {
+  $_SESSION['lang'] = $_POST['lang'];
+  header("Location: index.php");
+} else {
+  if (!isset($_SESSION['lang'])) {
+    $_SESSION['lang'] = 'fr';
+  }
 }
-// Pour tout le reste de cette page, on sait que $_SESSION['utilisateur'] existe
 
-// La page par défaut est l'accueil
+// La page par défaut est home
 if (isset($_POST['page'])) {
   $_SESSION['page'] = $_POST['page'];
   header("Location: index.php");
@@ -19,14 +22,9 @@ if (isset($_POST['page'])) {
   }
 }
 
-// La langue par défaut est le français
-if (isset($_POST['lang'])) {
-  $_SESSION['lang'] = $_POST['lang'];
-  header("Location: index.php");
-} else {
-  if (!isset($_SESSION['lang'])) {
-    $_SESSION['lang'] = 'fr';
-  }
+// Vérifier si l'utilisateur est déjà connecté
+if (!isset($_SESSION['utilisateur']) && $_SESSION['page'] !== 'create_user') {
+  $_SESSION['page'] = 'connexion';
 }
 
 global $tra;
