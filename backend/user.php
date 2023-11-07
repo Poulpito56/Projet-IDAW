@@ -6,8 +6,6 @@ header('Content-Type: application/json');
 switch ($_SERVER['REQUEST_METHOD']) {
 
   case 'GET':
-    $data = json_decode(file_get_contents('php://input'));
-
 
     if (!isset($_GET['login'])) {
       http_response_code(400);
@@ -15,13 +13,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
     } else {
       $login = $_GET['login'];
 
-      $sql = "SELECT * FROM PERSONNE WHERE LOGIN = '" . $login . "'";
+      $sql = "SELECT ID_REGIME,SEXE,MAIL,AGE,SPORT FROM PERSONNE WHERE LOGIN = '" . $login . "'";
       $request = $pdo->prepare($sql);
 
       try {
         $request->execute();
         http_response_code(200);
-        echo json_encode(["message" => "Personne créée avec succès."]);
+        echo json_encode($request->fetchAll(PDO::FETCH_OBJ));
       } catch (PDOException $e) {
         echo json_encode(["message" => $e->getMessage()]);
         http_response_code(500);
