@@ -6,8 +6,8 @@
 
 <form method="GET">
   <button type="submit" class="nav-button text-button">
-    <input type="hidden" name="page" value="plat">
-    <?php echo $tra->plat; ?>
+    <input type="hidden" name="page" value="dish">
+    <?php echo $tra->dish; ?>
   </button>
 </form>
 </div>
