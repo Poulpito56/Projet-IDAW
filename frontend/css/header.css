@@ -1,3 +1,5 @@
+@import url(./variables.css);
+
 header {
   z-index: 100;
   position: fixed;
@@ -8,7 +10,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(229, 229, 229);
+  background-color: var(--couleur-principale);
 }
 
 .page-logo-title {

@@ -36,6 +36,7 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
 <html>
 
 <head>
+  <link rel="stylesheet" href="css/connexion.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/styles.css">

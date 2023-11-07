@@ -1,7 +1,10 @@
+@import url(./variables.css);
+
 body {
     font-family: 'Roboto';
     padding-top: 100px;
     margin: 0;
+    background-color: var(--couleur-secondaire2);
 }
 
 .page {
@@ -26,7 +29,7 @@ body {
 
     &:hover {
         cursor: pointer;
-        background-color: lightgray;
+        background-color: var(--couleur-secondaire1);
 
         .tooltip {
             opacity: 1;
@@ -53,15 +56,53 @@ body {
         transform: translateX(-50%);
     }
 }
-.nav-button.text-button{
-    width: auto;
-    border: 3px;
-    border-width: 3px;
-    border-color: black;
-    background-color: darkred;
+
+.text-input {
+    border-radius: 10px;
+    border-width: 0;
+    padding: 5px;
+    text-align: center;
+    background-color: var(--couleur-secondaire2);
+
+    &:focus {
+        border-color: red;
+    }
 }
 
 .nav-img,
 .lang-img {
     width: 100%;
+}
+
+
+.text-button {
+    appearance: none;
+    background-color: var(--couleur-secondaire1);
+    border-width: 0;
+    border-radius: 10px;
+    color: var(--couleur-secondaire2);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    min-height: 40px;
+    min-width: 0;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.1s;
+
+    &:disabled {
+        pointer-events: none;
+    }
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
 }

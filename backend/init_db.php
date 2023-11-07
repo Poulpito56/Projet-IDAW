@@ -21,7 +21,7 @@ try {
   echo "Erreur : " . $e->getMessage();
 }
 
-$nombre_de_valeurs = "100";
+$nombre_de_valeurs = "1000";
 
 // URL de l'API open food facts
 $api_url = "https://world.openfoodfacts.org/cgi/search.pl?action=process&sort_by=random&page_size=" . $nombre_de_valeurs . "&json=1&fields=nutriments,ingredients,id,product_name,image_url,categories_tags";
