@@ -53,6 +53,13 @@ body {
         transform: translateX(-50%);
     }
 }
+.nav-button.text-button{
+    width: auto;
+    border: 3px;
+    border-width: 3px;
+    border-color: black;
+    background-color: darkred;
+}
 
 .nav-img,
 .lang-img {

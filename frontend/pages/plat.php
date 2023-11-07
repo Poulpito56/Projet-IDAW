@@ -2,9 +2,10 @@
     Ajouter un plat
 </h2>
 
-<form method="POST">
-  <button type="submit" class="nav-button">
-    <input type="hidden" name="page" value="ajout_plat">
-    <div class="tooltip"><?php echo $tra->add_dish; ?></div>
-  </button>
-</form>
+<input type="button" id="ajout_plat" value="<?php echo $tra->add_dish; ?>" class="nav-button text-button">
+
+
+
+
+        
+<p id="messageAjoutPlat"></p>
