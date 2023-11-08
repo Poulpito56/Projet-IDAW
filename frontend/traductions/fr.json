@@ -3,7 +3,7 @@
   "home": "Accueil",
   "journal": "Journal",
   "profile": "Profil",
-  "food": "Aliment",
+  "food": "Aliments",
   "log_out": "Déconnection",
   "language": "Langue",
   "add_dish": "Ajouter un plat",
@@ -29,5 +29,6 @@
   "hide_pasword": "Cacher mot de passe",
   "track_food": "Suivre l'alimentation",
   "validate": "Valider",
-  "back": "Retour"
+  "back": "Retour",
+  "titleDish": "Titre du plat"
 }

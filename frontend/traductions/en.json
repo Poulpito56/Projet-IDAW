@@ -3,7 +3,7 @@
   "home": "Home",
   "journal": "Journal",
   "profile": "Profile",
-  "food": "Food",
+  "food": "Foods",
   "log_out": "Log out",
   "language": "Language",
   "dish": "Dish",
@@ -29,5 +29,6 @@
   "hide_pasword": "Hide password",
   "track_food": "Track food",
   "validate": "Validate",
-  "back": "Back"
+  "back": "Back",
+  "titleDish": "Dish title"
 }

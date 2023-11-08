@@ -16,7 +16,7 @@ function verifType3(){
 function ajoutPlatTemp(){
     var plat = {
         id_aliment: 0,
-        nom: "temp",
+        nom: "Plat n°",
         type: 3,
         image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png"
       };
