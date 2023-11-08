@@ -4,7 +4,7 @@
     <h2 class="field-name"><?php echo ($tra->titleDish)." :"; ?></h2>
     <input class="text-input" type="text" id="titreNouvPlat" pattern="[A-Za-z0-9]" require>
   </div>
-
+  <h3 class="field-name"><?php echo ($tra->food)." :"; ?></h3>
   <table id="alimentTablePlat" class="display nowrap" style="width:100%">
     <thead>
         <tr>

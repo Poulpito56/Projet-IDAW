@@ -82,7 +82,8 @@ function afficherAlimentsPlat(id){
                         { data: 'IMAGE_URL',
                         render: function(data){ return '<img src="'+data+'" style="height:70px;"/>'}}
                         
-                  ]
+                  ],
+                  
 
             });
       })
