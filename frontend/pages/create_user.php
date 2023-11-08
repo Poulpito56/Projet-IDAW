@@ -22,7 +22,7 @@
       <?php
       require_once('pages/personal_information_fields.php')
       ?>
-      <button class="text-button" id="validate-button" type="submit"><?php echo $tra->connect; ?></button>
+      <button class="text-button" id="validate-button" type="submit"><?php echo $tra->create_user; ?></button>
 
     </form>
     <p id="message"></p>
