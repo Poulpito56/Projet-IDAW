@@ -61,10 +61,12 @@ create table ALLERGIE
 /*==============================================================*/
 create table CONSOMMER
 (
+   ID_CONSOMMATION      int AUTO_INCREMENT,
    LOGIN                char(63) not null,
    ID_ALIMENT           BIGINT,
-   QUANTITE             decimal(15,2) not null,
-   primary key (LOGIN, ID_ALIMENT)
+   QUANTITE             decimal(15,2),
+   DATE_CONSOMMATION    DATE,
+   primary key (ID_CONSOMMATION)
 );
 
 /*==============================================================*/

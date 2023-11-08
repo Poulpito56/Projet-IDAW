@@ -27,6 +27,7 @@
   "connexion": "Connection",
   "show_pasword": "Show password",
   "hide_pasword": "Hide password",
+  "track_food": "Track food",
   "validate": "Validate",
   "back": "Back"
 }
