@@ -17,6 +17,7 @@ body {
 }
 
 .nav-button,
+.icon-button,
 .lang-button {
     background-color: transparent;
     height: 50px;
@@ -57,6 +58,11 @@ body {
     }
 }
 
+.icon-button {
+    height: 40px;
+    width: 40px;
+}
+
 .text-input {
     border-radius: 10px;
     border-width: 0;
@@ -70,6 +76,7 @@ body {
 }
 
 .nav-img,
+.icon,
 .lang-img {
     width: 100%;
 }

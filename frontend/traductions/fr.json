@@ -25,6 +25,8 @@
   "create_user": "Créer nouvel utilisateur",
   "connect": "Se connecter",
   "connexion": "Connexion",
+  "show_pasword": "Afficher mot de passe",
+  "hide_pasword": "Cacher mot de passe",
   "validate": "Valider",
   "back": "Retour"
 }

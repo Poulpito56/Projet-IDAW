@@ -25,6 +25,8 @@
   "create_user": "Create user",
   "connect": "Connect",
   "connexion": "Connection",
+  "show_pasword": "Show password",
+  "hide_pasword": "Hide password",
   "validate": "Validate",
   "back": "Back"
 }
