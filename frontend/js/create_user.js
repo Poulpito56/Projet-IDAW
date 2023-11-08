@@ -42,8 +42,8 @@ function insertNewUser() {
   var personne = {
     login: document.getElementById('login').value,
     password: document.getElementById('password').value,
-    id_regime: (dietary_preferences) ? dietary_preferences.value : null,
-    sexe: (gender) ? gender.value : null,
+    id_regime: (dietary_preferences !== "") ? dietary_preferences : null,
+    sexe: (gender !== "") ? gender : null,
     mail: (email !== "") ? email : null,
     age: (age !== "") ? age : null,
     sport: (physical_activity !== "") ? physical_activity : null
