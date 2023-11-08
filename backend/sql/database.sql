@@ -3,7 +3,7 @@
 /* Date de création :  24/10/2023 17:09:29                      */
 /*==============================================================*/
 
-drop table if exists CONTIENIR;
+drop table if exists CONTENIR;
 
 drop table if exists ALLERGIE;
 
@@ -68,9 +68,9 @@ create table CONSOMMER
 );
 
 /*==============================================================*/
-/* Table : CONTIENIR                                            */
+/* Table : CONTENIR                                            */
 /*==============================================================*/
-create table CONTIENIR
+create table CONTENIR
 (
    ID_ALIMENT           BIGINT,
    ALI_ID_ALIMENT       BIGINT,
@@ -121,10 +121,10 @@ alter table CONSOMMER add constraint FK_CONSOMMER foreign key (LOGIN)
 alter table CONSOMMER add constraint FK_CONSOMMER2 foreign key (ID_ALIMENT)
       references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
-alter table CONTIENIR add constraint FK_CONTIENIR foreign key (ID_ALIMENT)
+alter table CONTENIR add constraint FK_CONTENIR foreign key (ID_ALIMENT)
       references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
-alter table CONTIENIR add constraint FK_CONTIENIR2 foreign key (ALI_ID_ALIMENT)
+alter table CONTENIR add constraint FK_CONTENIR2 foreign key (ALI_ID_ALIMENT)
       references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table PERSONNE add constraint FK_SUIVRE foreign key (ID_REGIME)
