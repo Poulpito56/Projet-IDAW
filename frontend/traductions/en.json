@@ -28,5 +28,6 @@
   "show_pasword": "Show password",
   "hide_pasword": "Hide password",
   "validate": "Validate",
-  "back": "Back"
+  "back": "Back",
+  "titleDish": "Dish title"
 }

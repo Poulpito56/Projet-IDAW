@@ -28,5 +28,6 @@
   "show_pasword": "Afficher mot de passe",
   "hide_pasword": "Cacher mot de passe",
   "validate": "Valider",
-  "back": "Retour"
+  "back": "Retour",
+  "titleDish": "Titre du plat"
 }

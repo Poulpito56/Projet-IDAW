@@ -18,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       exit;
     }
 
-    $request = $pdo->prepare("SELECT * FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "'");
+    $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE ID_ALIMENT IN (SELECT ALI_ID_ALIMENT FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "')");
 
 
     if ($request->execute()) {
@@ -27,7 +27,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       echo json_encode($reponse);
     } else {
       http_response_code(500);
-      echo json_encode(["message" => "Erreur lors de l'affichage de l'aliment."]);
+      echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
     }
 
     break;
@@ -36,49 +36,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $data = json_decode(file_get_contents('php://input'));
 
 
-    if (!isset($data->id_aliment) || !isset($data->ali_id_aliment) || !isset($data->pourcentage)) {
+    if (!isset($data->id_aliment) || !isset($data->ali_id_aliment) || !isset($data->poids)) {
       http_response_code(400);
-      echo json_encode(["message" => "Les champs 'plat', 'aliment' et 'poucentage' sont obligatoires."]);
+      echo json_encode(["message" => "Les champs 'plat', 'aliment' et 'poids' sont obligatoires."]);
     } else {
 
-      $aliment_obj = new stdClass();
+      $plat_obj = new stdClass();
 
-      $aliment_obj->NOM = $data->nom;
-      $aliment_obj->TYPE = "2";
-      $aliment_obj->ID_REGIME = isset($data->id_regime) ? $data->id_regime : NULL;
-      $aliment_obj->IMAGE_URL = isset($data->image_url) ? $data->image_url : NULL;
-    
-    $aliment_obj->GLUCIDE = isset($data->glucide) ? $data->glucide : NULL;
-    $aliment_obj->ENERGIE = isset($data->energie) ? $data->energie : NULL;
-    $aliment_obj->GRAS = isset($data->gras) ? $data->gras : NULL;
-    $aliment_obj->FIBRE = isset($data->fibre) ? $data->fibre : NULL;
-    $aliment_obj->PROTEINE = isset($data->proteine) ? $data->proteine : NULL;
-    $aliment_obj->SEL = isset($data->sel) ? $data->sel : NULL;
-    $aliment_obj->GRAISSES_SATUREES = isset($data->graisses_saturees) ? $data->graisses_saturees : NULL;
-    $aliment_obj->SUCRE = isset($data->sucre) ? $data->sucre : NULL;
+      $id = $data->id_aliment;
+      $ali_id = $data->ali_id_aliment;
+      $poids = $data->poids;
 
-    $query_first_part = "INSERT INTO ALIMENT (NOM,TYPE,ID_REGIME,IMAGE_URL,GLUCIDE,ENERGIE,GRAS,FIBRE,PROTEINE,SEL,GRAISSES_SATUREES,SUCRE) VALUES (";
+      $sql = "INSERT INTO CONTENIR (ID_ALIMENT, ALI_ID_ALIMENT, POIDS) VALUES ('" . $id . "', '" . $ali_id . "', '" . $poids . "', ')";
     
 
       try {
-        $query_second_part = "";
-        foreach ($aliment_obj as $cle => $valeur) {
-          if (is_string($valeur)) {
-            $query_second_part = $query_second_part . "'" . str_replace("'", '', $valeur) . "',";
-          } else {
-            if (is_null($valeur)) {
-              $query_second_part = $query_second_part . "null,";
-            } else {
-              $query_second_part = $query_second_part . $valeur . ",";
-            }
-          }
-        }
-
-        $sql = $query_first_part . substr($query_second_part, 0, -1) . ")";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         http_response_code(201);
-        echo json_encode(["message" => "Aliment créé avec succès."]);
+        echo json_encode(["message" => "Contenir créé avec succès."]);
       } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(["message" => "Erreur : " . $e->getMessage()]);
@@ -90,13 +66,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
   case 'DELETE':
     // Analyser l'URL pour obtenir l'identifiant de l'aliment à supprimer
     parse_str($_SERVER['QUERY_STRING'], $query);
-    if (isset($query['id_aliment'])) {
+    if (isset($query['id_aliment']) && isset($query['ali_id_aliment'])) {
       $id = $query['id_aliment'];
+      $ali_id = $query['ali_id_aliment'];
   
       // Requête SQL pour supprimer l'aliment
-      $sql = "DELETE FROM ALIMENT WHERE ID_ALIMENT = :id";
+      $sql = "DELETE FROM ALIMENT WHERE ID_ALIMENT = :id AND ALI_ID_ALIMENT = :ali_id";
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->bindParam(':ali_id', $ali_id, PDO::PARAM_INT);
   
       try {
         if ($stmt->execute()) {
@@ -111,7 +89,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       }
     } else {
       http_response_code(400);
-      echo json_encode(["message" => "L'identifiant de l'aliment à supprimer doit être spécifié dans l'URL."]);
+      echo json_encode(["message" => "Les identifiants du plat de l'aliment à supprimer doivent être spécifiés dans l'URL."]);
     }
     break;
     
@@ -119,9 +97,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
   case 'PUT':
     $data = json_decode(file_get_contents('php://input'));
 
-    if (!isset($data->id_aliment)) {
+    if (!isset($data->id_aliment) || !isset($data->ali_id_aliment)) {
       http_response_code(400);
-      echo json_encode(["message" => "Le champ 'Code barre' est obligatoire."]);
+      echo json_encode(["message" => "Les identifiants du plat de l'aliment doivent être spécifiés."]);
     } else {
       // Assurez-vous que la requête inclut uniquement les champs que vous souhaitez mettre à jour
       $updates = [];
@@ -130,55 +108,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $updates[] = "ID_REGIME = {$data->id_regime}";
       }
 
-      if (isset($data->nom)) {
-        $updates[] = "NOM = {$data->nom}";
-      }
-      
-      if (isset($data->glucide)) {
-        $updates[] = "GLUCIDE = {$data->glucide}";
-      }
-
-      if (isset($data->energie)) {
-        $updates[] = "ENERGIE = {$data->energie}";
-      }
-
-      if (isset($data->gras)) {
-        $updates[] = "GRAS = {$data->gras}";
-      }
-
-      if (isset($data->fibre)) {
-        $updates[] = "FIBRE = {$data->fibre}";
-      }
-
-      if (isset($data->proteine)) {
-        $updates[] = "PROTEINE = {$data->proteine}";
-      }
-
-      if (isset($data->sel)) {
-        $updates[] = "SEL = {$data->sel}";
-      }
-
-      if (isset($data->graisses_saturees)) {
-        $updates[] = "GRAISSES_SATUREES = {$data->graisses_saturees}";
-      }
-
-      if (isset($data->sucre)) {
-        $updates[] = "SUCRE = {$data->sucre}";
-      }
 
 
       if (!empty($updates)) {
         // Construire la requête SQL UPDATE avec les champs à mettre à jour
-        $sql = "UPDATE ALIMENT SET " . implode(', ', $updates) . " WHERE ID_ALIMENT = {$data->id_aliment}";
+        $sql = "UPDATE CONTENIR SET " . implode(', ', $updates) . " WHERE ID_ALIMENT = {$data->id_aliment} AND ALI_ID_ALIMENT = {$data->ali_id_aliment}";
 
         $request = $pdo->prepare($sql);
 
         if ($request->execute()) {
           http_response_code(200);
-          echo json_encode(["message" => "Aliment modifié avec succès."]);
+          echo json_encode(["message" => "Contenir modifié avec succès."]);
         } else {
           http_response_code(500);
-          echo json_encode(["message" => "Erreur lors de la modification de l'aliment."]);
+          echo json_encode(["message" => "Erreur lors de la modification du contenir."]);
         }
       } else {
         // Aucune donnée à mettre à jour

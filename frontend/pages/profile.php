@@ -5,7 +5,7 @@
     require_once('pages/personal_information_fields.php')
     ?>
     <tr>
-      <td id="validate-button"><input type="submit" value="<?php echo $tra->validate; ?>" /></td>
+      <td id="validate-button"><input type="submit" value="<?php echo $tra->validate; ?>" class="text-button" /></td>
     </tr>
   </table>
 </form>
