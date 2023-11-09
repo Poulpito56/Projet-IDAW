@@ -29,11 +29,11 @@ function afficherAliments(){
 
 afficherAliments();
 
-function afficherAlimentsType2(){
+function afficherAlimentsType2Log(login){
       $(document).ready(function(){
             $("#alimentT2Table").DataTable({
                   ajax: {
-                        url: "http://localhost/Projet%20IDAW/backend/aliment.php?type=2",
+                        url: "http://localhost/Projet%20IDAW/backend/aliment.php?type=2&login="+login,
                         dataSrc: ''
                   },
                   columns: [
@@ -58,7 +58,6 @@ function afficherAlimentsType2(){
       
 }
 
-afficherAlimentsType2();
 
 function afficherAlimentsPlat(id){
       $(document).ready(function(){
