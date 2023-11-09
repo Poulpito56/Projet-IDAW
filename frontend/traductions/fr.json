@@ -30,5 +30,8 @@
   "track_food": "Suivre l'alimentation",
   "validate": "Valider",
   "back": "Retour",
+  "last_day": "Dernier jour",
+  "last_month": "Dernier mois",
+  "last_week": "Dernière semaine",
   "titleDish": "Titre du plat"
 }

@@ -30,5 +30,8 @@
   "track_food": "Track food",
   "validate": "Validate",
   "back": "Back",
+  "last_day": "Last day",
+  "last_month": "Last month",
+  "last_week": "Last week",
   "titleDish": "Dish title"
 }
