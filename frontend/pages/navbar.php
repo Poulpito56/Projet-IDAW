@@ -1,4 +1,9 @@
 <div class="navbar">
+  <?php
+  if ($_SESSION['page'] === 'track_food') {
+    require_once('pages/date_selection.php');
+  }
+  ?>
   <form method="GET">
     <button type="submit" class="nav-button">
       <input type="hidden" name="page" value="home">
