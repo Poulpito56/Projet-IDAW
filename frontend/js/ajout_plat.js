@@ -1,4 +1,3 @@
-const button = document.getElementById("ajout_plat")
 const requestCreaType3 = new XMLHttpRequest();
 const requestVerifType3 = new XMLHttpRequest();
 
@@ -6,10 +5,9 @@ const requestVerifType3 = new XMLHttpRequest();
 
 
 
-button.addEventListener("click", verifType3)
 
-function verifType3(){
-  requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3", true);
+function verifType3Log(log){
+  requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
   requestVerifType3.send();
 }
 

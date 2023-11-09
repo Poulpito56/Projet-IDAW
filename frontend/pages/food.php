@@ -2,7 +2,6 @@
     <thead>
         <tr>
             <th scope="col">Nom</th>
-            <th scope="col">Code barre</th>
             <th scope="col">Energie</th>
             <th scope="col">Image</th>
         </tr>

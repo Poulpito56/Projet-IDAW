@@ -1,9 +1,8 @@
 <script src="js/main.js"></script>
-<script src="js/ajout_plat.js" defer></script>
+<script src="js/ajout_plat.js"></script>
 <script defer>
   var log = "<?php echo $_SESSION['utilisateur'] ?>";
-  console.log(log);
-afficherAlimentsType2Log(log); 
+  afficherAlimentsType2Log(log); 
 </script>
 
 
@@ -22,7 +21,7 @@ afficherAlimentsType2Log(log);
 </table>
 
 
-<input type="button" id="ajout_plat" value="<?php echo $tra->add_dish; ?>" class="text-button">
+<input type="button" id="ajout_plat" value="<?php echo $tra->add_dish; ?>" class="text-button" onclick="verifType3Log('<?php echo $_SESSION['utilisateur'] ?>')">
 
 
 
