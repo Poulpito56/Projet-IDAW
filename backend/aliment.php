@@ -21,11 +21,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(["message" => "Erreur lors de l'affichage de l'aliment."]);
       }
 
-    } elseif(isset($_GET['type'])){
+    } elseif(isset($_GET['type']) && isset($_GET['login'])){
 
+      $login = $_GET['login'];
       $type = $_GET['type'];
 
-      $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE TYPE = '" . $type . "'");
+      $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE TYPE = '" . $type . "' AND ID_ALIMENT IN (SELECT ID_ALIMENT FROM CONSOMMER WHERE LOGIN = '" . $login . "')");
 
 
       if ($request->execute()) {
@@ -34,7 +35,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode($reponse);
       } else {
         http_response_code(500);
-        echo json_encode(["message" => "Erreur lors de l'affichage de l'aliment."]);
+        echo json_encode(["message" => "Erreur lors de l'affichage des plats."]);
       }
 
     } else {
