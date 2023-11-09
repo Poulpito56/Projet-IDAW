@@ -38,6 +38,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(["message" => "Erreur lors de l'affichage des plats."]);
       }
 
+    } elseif(isset($_GET['type'])){
+
+      $type = $_GET['type'];
+
+      $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE TYPE = '" . $type . "'");
+
+
+      if ($request->execute()) {
+        $reponse = $request->fetchAll(PDO::FETCH_OBJ);
+        http_response_code(200);
+        echo json_encode($reponse);
+      } else {
+        http_response_code(500);
+        echo json_encode(["message" => "Erreur lors de l'affichage des plats."]);
+      }
     } else {
       http_response_code(422);
       echo json_encode(["message" => "Paramètre manquant"]);

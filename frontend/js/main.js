@@ -7,9 +7,9 @@ function afficherAliments(){
                   },
                   columns: [
                         { data: 'NOM'},
-                        { data: 'ID_ALIMENT',
+                        /*{ data: 'ID_ALIMENT',
                         render: function(data){
-                              return '<div class="code-barre">'+data+'</div>'}},
+                              return '<div class="code-barre">'+data+'</div>'}},*/
                         { data: 'ENERGIE',
                         render: function(data){var calorie = DataTable.render
                               .number(' ', ',', 1, '', 'kcal')
@@ -38,9 +38,9 @@ function afficherAlimentsType2Log(login){
                   },
                   columns: [
                         { data: 'NOM'},
-                        { data: 'ID_ALIMENT',
+                        /*{ data: 'ID_ALIMENT',
                         render: function(data){
-                              return '<div class="code-barre">'+data+'</div>'}},
+                              return '<div class="code-barre">'+data+'</div>'}},*/
                         { data: 'ENERGIE',
                         render: function(data){var calorie = DataTable.render
                               .number(' ', ',', 1, '', 'kcal')
