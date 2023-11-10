@@ -16,6 +16,14 @@
       elements[i].innerHTML = "<?php echo $tra->validate; ?>";
     }
   }
+
+  function displayDelete() {
+    var elements = document.getElementsByClassName('consomation-aliment-supprimer');
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].innerHTML = "<?php echo $tra->delete; ?>";
+    }
+  }
 </script>
 <script src="js/track_food.js" defer></script>
 <div id="track_food_container" class="track-food-container">

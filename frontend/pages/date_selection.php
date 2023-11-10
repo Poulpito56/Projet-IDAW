@@ -1,6 +1,6 @@
 <?php
-$yesterday  = mktime(0, 0, 0, date("m"), date("d") - 1, date("Y"));
-$lestWeek  = mktime(0, 0, 0, date("m"), date("d") - 7, date("Y"));
+$yesterday = mktime(0, 0, 0, date("m"), date("d") - 1, date("Y"));
+$lestWeek = mktime(0, 0, 0, date("m"), date("d") - 7, date("Y"));
 $lastMonth = mktime(0, 0, 0, date("m") - 1, date("d"),   date("Y"));
 ?>
 <select class="text-input" id='date_selection'>
