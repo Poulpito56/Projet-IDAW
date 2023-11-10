@@ -10,7 +10,7 @@ function afficherAlimentsType2Log(login) {
                   columns: [
                         {
                               data: 'ID_ALIMENT',
-                              render: function (data) { return `<button class="text-button consume-dish-button" onclick="consumeDish${data}"></button>` }
+                              render: function (data) { return `<button class="text-button consume-dish-button" onclick="consumeDish(${data})"></button>` }
                         },
                         { data: 'NOM' },
                         /*{ data: 'ID_ALIMENT',

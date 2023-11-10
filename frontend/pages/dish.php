@@ -7,12 +7,12 @@
     }
   }
 </script>
-<script src="js/plat.js"></script>
-<script src="js/main.js" defer></script>
-<script defer>
+<script src="js/main.js"></script>
+<script>
   var log = "<?php echo $_SESSION['utilisateur'] ?>";
   afficherAlimentsType2Log(log);
 </script>
+<script src="js/plat.js" defer></script>
 
 
 

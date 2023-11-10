@@ -1,22 +1,27 @@
 const requestVerifType3 = new XMLHttpRequest();
 
-<<<<<<< HEAD
-
-function verifType3Log(log){
-    requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
-    requestVerifType3.send();
-=======
 // button.addEventListener("click", afficherNom)
 
 function consumeDish(id_aliment) {
-
+  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      login: log,
+      id_aliment: id_aliment
+    })
+  })
+    .catch(error => {
+      console.error('Erreur :', error);
+    });
 }
 
 
 function verifType3Log(log) {
   requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login=" + log, true);
   requestVerifType3.send();
->>>>>>> 71c2588d17bca82b83ea7c99a8153d34d03f65f1
 }
 
 requestVerifType3.onreadystatechange = function () {
@@ -45,7 +50,7 @@ function ajoutPlatTemp() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(platTemp)
-    })
+  })
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -54,7 +59,7 @@ function ajoutPlatTemp() {
       return response.json();
     })
     .then(result => {
-      const logIdAli = { "login": log, "id_aliment":  result.id};
+      const logIdAli = { "login": log, "id_aliment": result.id };
       console.log(logIdAli);
       fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
         method: 'POST',
