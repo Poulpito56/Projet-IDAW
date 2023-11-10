@@ -6,11 +6,13 @@
   gap: 20px;
 }
 
-.consomation-aliment-row {
+.consomation-aliment-row,
+.consomation-aliment-buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .consomation-aliment-field {}
@@ -21,4 +23,8 @@
 
 .green-background {
   background-color: var(--couleur-principale) !important;
+}
+
+.red-background {
+  background-color: var(--couleur-secondaire4) !important;
 }
