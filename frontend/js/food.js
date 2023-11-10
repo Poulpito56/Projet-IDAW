@@ -75,7 +75,10 @@ function ajoutAliment(idAli, idPlat){
         .then(data => {
           but.classList.remove('add-food-to-dish-button');
           but.classList.add('sup-food-to-dish-button');
+          but.classList.add('red-background');
           but.setAttribute('onclick', `supprimerAliment(${idAli}, ${idPlat})`)
+          displaySup();
+          but.disabled = false;
         })
         .catch(error => {
           mess = document.getElementById('messageAjoutPlat');

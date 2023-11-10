@@ -115,3 +115,7 @@ body {
         transform: translateY(0);
     }
 }
+
+.red-background {
+    background-color: var(--couleur-secondaire4) !important;
+  }
