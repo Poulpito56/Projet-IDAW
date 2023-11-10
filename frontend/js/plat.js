@@ -3,6 +3,16 @@ const requestVerifType3 = new XMLHttpRequest();
 // button.addEventListener("click", afficherNom)
 
 function consumeDish(id_aliment) {
+  var today = new Date();
+
+  // Récupérez l'année, le mois et le jour
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2); // Ajoutez 1 car les mois commencent à 0
+  var day = ('0' + today.getDate()).slice(-2);
+
+  // Formatez la date au format "yyyy-mm-dd"
+  var formattedDate = year + '-' + month + '-' + day;
+  console.log(formattedDate)
   fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
     method: 'POST',
     headers: {
@@ -10,7 +20,8 @@ function consumeDish(id_aliment) {
     },
     body: JSON.stringify({
       login: log,
-      id_aliment: id_aliment
+      id_aliment: id_aliment,
+      date_consommation: "'" + formattedDate + "'"
     })
   })
     .catch(error => {
