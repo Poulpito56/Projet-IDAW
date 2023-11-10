@@ -38,7 +38,7 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
 <head>
   <script>
     function getUser(){
-      return <?php echo $_SESSION['login']; ?>
+      return '<?php echo $_SESSION['utilisateur']; ?>'
     }
   </script>
   <link rel="stylesheet" href="css/connexion.css">

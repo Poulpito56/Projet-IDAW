@@ -125,8 +125,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $sql = $query_first_part . substr($query_second_part, 0, -1) . ")";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        $idAuto = $pdo->lastInsertId();
+
         http_response_code(201);
-        echo json_encode(["message" => "Aliment créé avec succès."]);
+        echo json_encode(["message" => "Aliment créé avec succès.", "id" => $idAuto]);
       } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(["message" => "Erreur : " . $e->getMessage()]);
