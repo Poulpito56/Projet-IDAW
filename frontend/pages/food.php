@@ -9,3 +9,6 @@
     <tbody>
     </tbody>
 </table>
+
+
+<script defer>afficherAliments();</script>

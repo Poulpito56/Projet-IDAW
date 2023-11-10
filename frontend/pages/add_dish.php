@@ -1,4 +1,5 @@
 <script src="js/main.js" defer></script>
+<script src="js/ajout_plat.js"></script>
 <form id="nouvPlatForm" method="PUT">
   <div class="custom-table-field">
     <h2 class="field-name"><?php echo ($tra->titleDish) . " :"; ?></h2>
@@ -16,9 +17,10 @@
     </thead>
     <tbody>
     </tbody>
-  </table>
+  </table>  
 
   <tr>
+    <td id="validate-button-dish"><input class="text-button" type="button" value="<?php echo $tra->add_food; ?>" onclick="ajout_aliment()"/></td>
     <td id="validate-button-dish"><input class="text-button" type="submit" value="<?php echo $tra->validate; ?>" /></td>
   </tr>
 </form>
