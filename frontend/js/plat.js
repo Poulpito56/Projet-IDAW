@@ -7,23 +7,8 @@ const requestVerifType3 = new XMLHttpRequest();
 
 
 function verifType3Log(log){
-
-  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(data => {
-      requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
-      requestVerifType3.send();
-    })
-    .catch(error => {
-      mess = document.getElementById('messageAjoutPlat');
-      mess.innerHTML = error;
-    });
-  
+    requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
+    requestVerifType3.send();
 }
 
 function ajoutPlatTemp(){
@@ -59,7 +44,35 @@ requestCreaType3.onreadystatechange = function () {
       mess = document.getElementById('messageAjoutPlat');
       mess.innerHTML = JSON.parse(requestCreaType3.response).message;
     } else {
-      window.location.href = "?page=add_dish"
+    fetch('http://localhost/Projet%20IDAW/backend/aliment.php?type=3', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(data => {
+      const logIdAli = { "login": log, "id_aliment":  data[0].ID_ALIMENT};
+      fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(logIdAli)
+      })
+        .then(data => {
+          window.location.href = "?page=add_dish"
+        })
+        .catch(error => {
+          mess = document.getElementById('messageAjoutPlat');
+          mess.innerHTML = error;
+        });
+    })
+    .catch(error => {
+      mess = document.getElementById('messageAjoutPlat');
+      mess.innerHTML = error;
+    });
+      
+      
     }
   }
 };
