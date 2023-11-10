@@ -39,41 +39,38 @@ requestVerifType3.onreadystatechange = function () {
 };
 
 function ajoutPlatTemp(){
-  if (requestCreaType3.readyState == 4) {
-    if (requestCreaType3.status !== 201) {
-      mess = document.getElementById('messageAjoutPlat');
-      mess.innerHTML = JSON.parse(requestCreaType3.response).message;
-    } else {
-      const log = getUser();
-      fetch('http://localhost/Projet%20IDAW/backend/aliment.php?', {
+
+  const log = getUser();
+  const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png"};
+  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(platTemp)
+  })
+    .then(data => {
+      const logIdAli = { "login": log, "id_aliment":  data.id};
+      console.log(data.Prototype);
+      fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(logIdAli)
       })
         .then(data => {
-          const logIdAli = { "login": log, "id_aliment":  data[0].ID_ALIMENT};
-          fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(logIdAli)
-          })
-            .then(data => {
-              window.location.href = "?page=add_dish"
-            })
-            .catch(error => {
-              mess = document.getElementById('messageAjoutPlat');
-              mess.innerHTML = error;
-            });
+          //window.location.href = "?page=add_dish"
         })
         .catch(error => {
           mess = document.getElementById('messageAjoutPlat');
           mess.innerHTML = error;
         });
-      
-      
-    }
-  }
+    })
+    .catch(error => {
+      mess = document.getElementById('messageAjoutPlat');
+      mess.innerHTML = error;
+    });
+  
+  
 };
