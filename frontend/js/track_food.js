@@ -1,10 +1,42 @@
 const request = new XMLHttpRequest();
 
 function modifyConso(id_conso) {
+  let row = document.getElementById('id_consommation_' + id_conso);
+  row.classList.add('green-background')
 
+  // On change l'affichage de la quantité par un input
+  let quantite = row.getElementsByClassName("consomation-aliment-quantite");
+  quantite[0].innerHTML = `<input type="number" class="text-input" value="${quantite[0].innerHTML}">`;
+
+  // On change le bouton modifier par valider
+  let valider = row.getElementsByClassName("consomation-aliment-modifier");
+
+  valider[0].classList.add('consomation-aliment-valider');
+  valider[0].setAttribute('onclick', `validateConso(${id_conso})`);
+  valider[0].classList.remove('consomation-aliment-modifier');
+  displayValidate();
 }
 
-async function displayConso(consommation) {
+function validateConso(id_conso) {
+  let row = document.getElementById('id_consommation_' + id_conso);
+  row.classList.remove('green-background')
+
+  // On change l'affichage de la quantité par un input
+  let quantite = row.getElementsByTagName('input');
+
+  quantiteField = row.getElementsByClassName("consomation-aliment-quantite");
+  quantiteField[0].innerHTML = `${quantite[0].value}`;
+
+  // On change le bouton modifier par valider
+  let modifier = row.getElementsByClassName("consomation-aliment-valider");
+
+  modifier[0].classList.add('consomation-aliment-modifier');
+  modifier[0].setAttribute('onclick', `modifyConso(${id_conso})`);
+  modifier[0].classList.remove('consomation-aliment-valider')
+  displayModify();
+}
+
+function displayConso(consommation) {
   id_aliment = consommation['ID_ALIMENT'];
   return fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id_aliment}`)
     .then(response => {
@@ -60,7 +92,6 @@ request.onreadystatechange = function () {
         row.classList.add('consomation-aliment-row');
         consommation = rep[key];
         row.id = "id_consommation_" + consommation['ID_CONSOMMATION'];
-        delete consommation['ID_CONSOMMATION'];
 
         const fields = displayConso(consommation)
 
