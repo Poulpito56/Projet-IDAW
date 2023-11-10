@@ -1,5 +1,5 @@
 <script src="js/main.js"></script>
-<script src="js/ajout_plat.js"></script>
+<script src="js/plat.js"></script>
 <script defer>
   var log = "<?php echo $_SESSION['utilisateur'] ?>";
   afficherAlimentsType2Log(log); 

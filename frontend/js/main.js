@@ -5,11 +5,12 @@ function afficherAliments(){
                         url: "http://localhost/Projet%20IDAW/backend/aliments.php",
                         dataSrc: ''
                   },
+                  
                   columns: [
-                        { data: 'NOM'},
-                        /*{ data: 'ID_ALIMENT',
+                        { data: 'ID_ALIMENT',
                         render: function(data){
-                              return '<div class="code-barre">'+data+'</div>'}},*/
+                              return '<button class="text-button" onclick="('+data+')">Ajouter</button>'}},
+                        { data: 'NOM'},
                         { data: 'ENERGIE',
                         render: function(data){var calorie = DataTable.render
                               .number(' ', ',', 1, '', 'kcal')
@@ -27,7 +28,6 @@ function afficherAliments(){
       
 }
 
-afficherAliments();
 
 function afficherAlimentsType2Log(login){
       $(document).ready(function(){
