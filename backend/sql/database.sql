@@ -76,7 +76,7 @@ create table CONTENIR
 (
    ID_ALIMENT           BIGINT,
    ALI_ID_ALIMENT       BIGINT,
-   POURCENTAGE          smallint not null,
+   POIDS          smallint not null,
    primary key (ID_ALIMENT, ALI_ID_ALIMENT)
 );
 

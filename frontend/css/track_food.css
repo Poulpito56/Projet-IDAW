@@ -24,7 +24,3 @@
 .green-background {
   background-color: var(--couleur-principale) !important;
 }
-
-.red-background {
-  background-color: var(--couleur-secondaire4) !important;
-}

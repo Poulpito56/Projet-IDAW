@@ -6,6 +6,13 @@
       elements[i].innerHTML = "<?php echo $tra->add; ?>";
     }
   }
+  function displaySup() {
+    var elements = document.getElementsByClassName('sup-food-to-dish-button');
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].innerHTML = "<?php echo $tra->delete; ?>";
+    }
+  }
 </script>
 <script src="js/food.js" defer></script>
 <script src="js/main.js" async></script>
