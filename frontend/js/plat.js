@@ -3,12 +3,14 @@ const requestVerifType3 = new XMLHttpRequest();
 
 // button.addEventListener("click", afficherNom)
 
+function consumeDish(id_aliment) {
+
+}
 
 
-
-function verifType3Log(log){
-    requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
-    requestVerifType3.send();
+function verifType3Log(log) {
+  requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login=" + log, true);
+  requestVerifType3.send();
 }
 
 /*function ajoutPlatTemp(){
@@ -24,24 +26,24 @@ function verifType3Log(log){
 
 requestVerifType3.onreadystatechange = function () {
   if (requestVerifType3.readyState == 4) {
-      if (requestVerifType3.status != 200) {
-      
+    if (requestVerifType3.status != 200) {
+
       mess = document.getElementById('messageAjoutPlat');
       mess.innerHTML = JSON.parse(requestVerifType3.response).message;
     } else {
-      if(JSON.parse(requestVerifType3.response).length == 0){
-        ajoutPlatTemp(); 
-      } else{
+      if (JSON.parse(requestVerifType3.response).length == 0) {
+        ajoutPlatTemp();
+      } else {
         window.location.href = "?page=add_dish"
       }
     }
   }
 };
 
-function ajoutPlatTemp(){
+function ajoutPlatTemp() {
 
   const log = getUser();
-  const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png"};
+  const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png" };
   fetch('http://localhost/Projet%20IDAW/backend/aliment.php?', {
     method: 'POST',
     headers: {
@@ -50,7 +52,7 @@ function ajoutPlatTemp(){
     body: JSON.stringify(platTemp)
   })
     .then(data => {
-      const logIdAli = { "login": log, "id_aliment":  data.id};
+      const logIdAli = { "login": log, "id_aliment": data.id };
       console.log(data.Prototype);
       fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
         method: 'POST',
@@ -71,6 +73,6 @@ function ajoutPlatTemp(){
       mess = document.getElementById('messageAjoutPlat');
       mess.innerHTML = error;
     });
-  
-  
+
+
 };
