@@ -7,8 +7,23 @@ const requestVerifType3 = new XMLHttpRequest();
 
 
 function verifType3Log(log){
-  requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
-  requestVerifType3.send();
+
+  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(data => {
+      requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login="+log, true);
+      requestVerifType3.send();
+    })
+    .catch(error => {
+      mess = document.getElementById('messageAjoutPlat');
+      mess.innerHTML = error;
+    });
+  
 }
 
 function ajoutPlatTemp(){

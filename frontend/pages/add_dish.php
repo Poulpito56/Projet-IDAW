@@ -26,7 +26,10 @@
 </form>
 
 <script>
-  fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?type=3`)
+  console.log('http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login='+'<?php echo $_SESSION['utilisateur'] ?>');
+  console.log('<?php echo $_SESSION['utilisateur'] ?>');
+
+  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login='+'<?php echo $_SESSION['utilisateur'] ?>')
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);
@@ -34,6 +37,7 @@
       return response.json(); // Convertir la réponse en JSON
     })
     .then(data => {
+      console.log(data);
       var plat_info = data[0];
       afficherAlimentsPlat(plat_info.ID_ALIMENT);
       document.getElementById('titreNouvPlat').value = (plat_info.NOM == "Plat n°") ? plat_info.NOM + plat_info.ID_ALIMENT : plat_info.NOM;

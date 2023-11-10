@@ -27,9 +27,6 @@ function afficherAliments(){
       })
       
 }
-const table = $('#example');
-table.on('user-select.dt');
-console.log(table.data)
 
 
 function afficherAlimentsType2Log(login){

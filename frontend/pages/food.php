@@ -1,3 +1,5 @@
+<script src="js/food.js" defer></script>
+
 <table id="alimentTable" class="display nowrap" style="width:100%">
     <thead>
         <tr>

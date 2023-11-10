@@ -32,14 +32,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $data = json_decode(file_get_contents('php://input'));
 
 
-    if (!isset($data->login) || !isset($data->id_aliment) || !isset($data->date_consommation)) {
+    if (!isset($data->login) || !isset($data->id_aliment)) {
       http_response_code(400);
       echo json_encode(["message" => "Les champs manquants."]);
     } else {
+      $date = isset($data->date_consommation) ? $data->date_consommation : "null";
       $quantite = isset($data->quantite) ? $data->quantite : "null";
 
       $sql = "INSERT INTO CONSOMMER (LOGIN,ID_ALIMENT,DATE_CONSOMMATION,QUANTITE)
-              VALUES ('$data->login',$data->id_aliment,'$data->date_consommation',$quantite)";
+              VALUES ('$data->login',$data->id_aliment,$date,$quantite)";
 
       $request = $pdo->prepare($sql);
 
