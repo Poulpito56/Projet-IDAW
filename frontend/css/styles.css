@@ -101,6 +101,8 @@ body {
 
     &:disabled {
         pointer-events: none;
+        background-color: rgb(103, 103, 103);
+        color: black;
     }
 
     &:hover {
