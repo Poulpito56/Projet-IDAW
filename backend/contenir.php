@@ -47,7 +47,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $ali_id = $data->ali_id_aliment;
       $poids = $data->poids;
 
-      $sql = "INSERT INTO CONTENIR (ID_ALIMENT, ALI_ID_ALIMENT, POIDS) VALUES ('" . $id . "', '" . $ali_id . "', '" . $poids . "', ')";
+      $sql = "INSERT INTO CONTENIR (ID_ALIMENT, ALI_ID_ALIMENT, POIDS) VALUES ('" . $id . "', '" . $ali_id . "', '" . $poids . "')";
     
 
       try {

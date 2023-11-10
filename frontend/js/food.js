@@ -84,5 +84,28 @@ function ajoutAliment(idAli, idPlat){
           mess = document.getElementById('messageAjoutPlat');
           mess.innerHTML = error;
         });
+}
+
+function supprimerAliment(idAli, idPlat){
+  but = document.getElementById("button-"+idAli);
+  but.disabled = true;
+  fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${idPlat}&ali_id_aliment=${idAli}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(data => {
+          but.classList.remove('sup-food-to-dish-button');
+          but.classList.remove('red-background');
+          but.classList.add('add-food-to-dish-button');
+          but.setAttribute('onclick', `ajoutAliment(${idAli}, ${idPlat})`)
+          displayAdd();
+          but.disabled = false;
+        })
+        .catch(error => {
+          mess = document.getElementById('messageAjoutPlat');
+          mess.innerHTML = error;
+        });
 
 }
