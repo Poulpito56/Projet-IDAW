@@ -1,0 +1,12 @@
+.consomation-aliment-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consomation-aliment-field {}
+
+.consomation-aliment-image {
+  height: 100px;
+}

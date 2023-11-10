@@ -14,7 +14,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $login = $_GET['login'];
       $date_consommation = $_GET['date_consommation'];
 
-      $sql = "SELECT ID_CONSOMMATION,ID_ALIMENT,QUANTITE FROM CONSOMMER WHERE LOGIN = '" . $login . "' AND DATE_CONSOMMATION = '" . $date_consommation . "'";
+      $sql = "SELECT ID_ALIMENT,QUANTITE,ID_CONSOMMATION FROM CONSOMMER WHERE LOGIN = '" . $login . "' AND DATE_CONSOMMATION > '" . $date_consommation . "'";
       $request = $pdo->prepare($sql);
 
       try {
