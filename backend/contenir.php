@@ -71,7 +71,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $ali_id = $query['ali_id_aliment'];
   
       // Requête SQL pour supprimer l'aliment
-      $sql = "DELETE FROM ALIMENT WHERE ID_ALIMENT = :id AND ALI_ID_ALIMENT = :ali_id";
+      $sql = "DELETE FROM CONTENIR WHERE ID_ALIMENT = :id AND ALI_ID_ALIMENT = :ali_id";
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id, PDO::PARAM_INT);
       $stmt->bindParam(':ali_id', $ali_id, PDO::PARAM_INT);
