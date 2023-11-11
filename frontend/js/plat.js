@@ -12,7 +12,6 @@ function consumeDish(id_aliment) {
 
   // Formatez la date au format "yyyy-mm-dd"
   var formattedDate = year + '-' + month + '-' + day;
-  console.log(formattedDate)
   fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
     method: 'POST',
     headers: {

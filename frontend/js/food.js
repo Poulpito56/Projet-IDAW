@@ -4,7 +4,12 @@ function afficherAliments(idPlat){
       ajax: {
         url: "http://localhost/Projet%20IDAW/backend/aliments.php",
         dataSrc: ''
-      },
+      },columnDefs: [
+        {
+          orderable: false,
+          targets: 0
+        }
+      ],
       columns: [
         { data: 'ID_ALIMENT',
         render: function(data){

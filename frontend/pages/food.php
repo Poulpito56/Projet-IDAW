@@ -29,12 +29,9 @@
         return response.json();
       })
       .then(result => {
-        console.log(result);
         for (const ali of result) {
           const idAli = ali.ID_ALIMENT
-          console.log('button-'+idAli);
           but = document.getElementById('button-'+idAli);
-          console.log(but);
           but.classList.remove('add-food-to-dish-button');
           but.classList.add('sup-food-to-dish-button');
           but.classList.add('red-background');
@@ -63,5 +60,12 @@
   <tbody>
   </tbody>
 </table>
+
+<form method="GET">
+  <button type="submit" class="text-button">
+    <input type="hidden" name="page" value="add_dish">
+    <?php echo $tra->validate; ?>
+  </button>
+</form>
 
 <p id="messageFood"></p>
