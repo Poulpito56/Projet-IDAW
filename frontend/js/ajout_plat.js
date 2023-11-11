@@ -54,7 +54,7 @@ function validerNouvPlat(){
             },
             body: JSON.stringify(donnees)
           }).then(data => {
-            //window.location.href = "?page=dish"
+            window.location.href = "?page=dish"
           })
           .catch(error => {
             console.error('Erreur :', error);
