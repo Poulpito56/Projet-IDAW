@@ -6,8 +6,38 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
   case 'GET':
 
-    if (isset($_GET['id_aliment'])) {
+    if(isset($_GET['id_aliment']) && isset($_GET['ali_id_aliment'])){
+
+      $idPlat = $_GET['id_aliment'];
+      $idAli = $_GET['ali_id_aliment'];
+
+      $request = $pdo->prepare("SELECT * FROM CONTENIR WHERE ID_ALIMENT = '" . $idPlat . "' AND ALI_ID_ALIMENT = '" . $idAli . "'");
+
+
+      if ($request->execute()) {
+        $reponse = $request->fetchAll(PDO::FETCH_OBJ);
+        http_response_code(200);
+        echo json_encode($reponse);
+      } else {
+        http_response_code(500);
+        echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
+      }
+
+    } elseif (isset($_GET['id_aliment'])) {
+
       $id = $_GET['id_aliment'];
+
+      $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE ID_ALIMENT IN (SELECT ALI_ID_ALIMENT FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "')");
+
+
+      if ($request->execute()) {
+        $reponse = $request->fetchAll(PDO::FETCH_OBJ);
+        http_response_code(200);
+        echo json_encode($reponse);
+      } else {
+        http_response_code(500);
+        echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
+      }
     } else {
       http_response_code(422);
       echo json_encode(["message" => "Paramètre manquant"]);
@@ -18,17 +48,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       exit;
     }
 
-    $request = $pdo->prepare("SELECT * FROM ALIMENT WHERE ID_ALIMENT IN (SELECT ALI_ID_ALIMENT FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "')");
-
-
-    if ($request->execute()) {
-      $reponse = $request->fetchAll(PDO::FETCH_OBJ);
-      http_response_code(200);
-      echo json_encode($reponse);
-    } else {
-      http_response_code(500);
-      echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
-    }
+    
 
     break;
 

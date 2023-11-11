@@ -71,7 +71,6 @@ function ajoutPlatTemp() {
     })
     .then(result => {
       const logIdAli = { "login": log, "id_aliment": result.id };
-      console.log(logIdAli);
       fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
         method: 'POST',
         headers: {

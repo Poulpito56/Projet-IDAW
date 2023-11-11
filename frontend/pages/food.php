@@ -13,6 +13,40 @@
       elements[i].innerHTML = "<?php echo $tra->delete; ?>";
     }
   }
+
+  function addToSup(idPlat){
+    fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${idPlat}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // Parse the JSON content of the response
+        return response.json();
+      })
+      .then(result => {
+        console.log(result);
+        for (const ali of result) {
+          const idAli = ali.ID_ALIMENT
+          console.log('button-'+idAli);
+          but = document.getElementById('button-'+idAli);
+          console.log(but);
+          but.classList.remove('add-food-to-dish-button');
+          but.classList.add('sup-food-to-dish-button');
+          but.classList.add('red-background');
+          but.setAttribute('onclick', `supprimerAliment(${idAli}, ${idPlat})`)
+          but.innerHTML = "<?php echo $tra->delete; ?>";
+        }
+      })
+      .catch(error => {
+        mess = document.getElementById('messageFood');
+        mess.innerHTML = error;
+      })
+  } 
 </script>
 <script src="js/food.js" defer></script>
 <script src="js/main.js" async></script>
@@ -29,3 +63,5 @@
   <tbody>
   </tbody>
 </table>
+
+<p id="messageFood"></p>
