@@ -16,7 +16,7 @@ request.onreadystatechange = function () {
         body: JSON.stringify(data)
       })
         .then(data => {
-          window.location.href = "?page=home";
+          window.location.href = "?page=track_food";
         })
         .catch(error => {
           console.error('Erreur :', error);
