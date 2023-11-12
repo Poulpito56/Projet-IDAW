@@ -1,5 +1,24 @@
 const request = new XMLHttpRequest();
 
+function comparerDates(a, b) {
+  return new Date(b.DATE_CONSOMMATION) - new Date(a.DATE_CONSOMMATION);
+}
+
+function maxDate() {
+  var dtToday = new Date();
+
+  var month = dtToday.getMonth() + 1;
+  var day = dtToday.getDate();
+  var year = dtToday.getFullYear();
+  var maxDate = year + '-' + month + '-' + day;
+
+  var elements = document.querySelectorAll('.date-input');
+
+  elements.forEach(function (element) {
+    element.setAttribute('max', maxDate);
+  });
+};
+
 function formatDateToDMY(dateString) {
   var parts = dateString.split("-");
   if (parts.length === 3) {
@@ -44,7 +63,7 @@ function modifyConso(id_conso) {
 
   // On change l'affichage de la date par un input
   let date = row.getElementsByClassName("consomation-aliment-date");
-  date[0].innerHTML = `<input type="date" class="text-input" value="${formatDateToYMD(date[0].innerHTML)}">`;
+  date[0].innerHTML = `<input type="date" class="text-input date-input" value="${formatDateToYMD(date[0].innerHTML)}">`;
 
   // On change le bouton modifier par valider
   let valider = row.getElementsByClassName("consomation-aliment-modifier");
@@ -53,6 +72,7 @@ function modifyConso(id_conso) {
   valider[0].setAttribute('onclick', `validateConso(${id_conso})`);
   valider[0].classList.remove('consomation-aliment-modifier');
   displayValidate();
+  maxDate()
 }
 
 function validateConso(id_conso) {
@@ -71,7 +91,7 @@ function validateConso(id_conso) {
   nouvelleDate = date[0].value
   dateField[0].innerHTML = `${formatDateToDMY(nouvelleDate)}`;
 
-  fetch('http://localhost/Projet%20IDAW/backend/consommer.php?', {
+  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -108,11 +128,6 @@ function displayConso(consommation) {
     .then(response => { return response[0] })
     .then(aliment => {
 
-      // Ajout image aliment
-      let aliment_image = document.createElement('img');
-      aliment_image.classList.add('consomation-aliment-image');
-      aliment_image.setAttribute('src', aliment['IMAGE_URL']);
-
       // Ajout nom aliment
       let aliment_name = document.createElement('div');
       aliment_name.classList.add('consomation-aliment-name');
@@ -146,7 +161,7 @@ function displayConso(consommation) {
       buttons.append(modifier);
       buttons.append(supprimer);
 
-      return { aliment_image, aliment_name, quantite, date, buttons };
+      return { aliment_name, quantite, date, buttons };
     })
     .catch(error => {
       console.error('Erreur :', error);
@@ -162,7 +177,10 @@ request.onreadystatechange = function () {
       // Construction du code HTML de la page pour afficher les consommations
       var trackFoodContainer = document.getElementById('track_food_container');
       trackFoodContainer.innerHTML = "";
-      var rep = JSON.parse(request.response).reverse();
+      var rep = JSON.parse(request.response);
+
+      // Trier le tableau en utilisant la fonction de comparaison
+      rep.sort(comparerDates);
 
       for (var key in rep) { // Parcours des éléments de la table consommation demandés
         let row = document.createElement('div');

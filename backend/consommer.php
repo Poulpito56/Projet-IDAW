@@ -63,7 +63,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       http_response_code(400);
       echo json_encode(["message" => "Les champs manquants."]);
     } else {
-      $quantite = isset($data->quantite) ? $data->quantite : "null";
+      $quantite = isset($data->quantite) && $data->quantite !== "" ? $data->quantite : "null";
       $date_consommation = isset($data->date_consommation) ? $data->date_consommation : "null";
 
       $sql = "UPDATE CONSOMMER

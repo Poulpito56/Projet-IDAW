@@ -15,6 +15,10 @@
   gap: 10px;
 }
 
+.consomation-aliment-row {
+  padding: 10px;
+}
+
 .consomation-aliment-field {}
 
 .consomation-aliment-image {
@@ -23,4 +27,21 @@
 
 .green-background {
   background-color: var(--couleur-principale) !important;
+}
+
+.track-food-field-name {
+  appearance: none;
+  background-color: var(--couleur-principale);
+  border-width: 0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.empty-div {
+  width: 170px;
 }
