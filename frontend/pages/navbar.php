@@ -6,9 +6,9 @@
   ?>
   <form method="GET">
     <button type="submit" class="nav-button">
-      <input type="hidden" name="page" value="home">
-      <img class="nav-img" src="imgs/logos/home.png" alt="<?php echo $tra->home; ?>">
-      <div class="tooltip"><?php echo $tra->home; ?></div>
+      <input type="hidden" name="page" value="track_food">
+      <img class="nav-img" src="imgs/logos/home.png" alt="<?php echo $tra->track_food; ?>">
+      <div class="tooltip"><?php echo $tra->track_food; ?></div>
     </button>
   </form>
   <form method="GET">

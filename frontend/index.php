@@ -11,7 +11,7 @@ if (isset($_GET['lang'])) {
   }
 }
 
-// La page par défaut est home
+// La page par défaut est track_food
 if (isset($_GET['page'])) {
   $page = $_GET['page'];
   if (($page !== 'connexion' && $page !== 'create_user') || !isset($_SESSION['utilisateur'])) {
@@ -19,7 +19,7 @@ if (isset($_GET['page'])) {
   }
 } else {
   if (!isset($_SESSION['page'])) {
-    $_SESSION['page'] = 'home';
+    $_SESSION['page'] = 'track_food';
   }
 }
 
@@ -37,7 +37,7 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
 
 <head>
   <script>
-    function getUser(){
+    function getUser() {
       return '<?php echo $_SESSION['utilisateur']; ?>'
     }
   </script>
@@ -56,7 +56,7 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
   <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>-->
   <script src="https://code.jquery.com/jquery-3.7.0.js" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-  <link src="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">  
+  <link src="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 </head>
 
