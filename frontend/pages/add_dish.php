@@ -48,6 +48,7 @@
       afficherAlimentsPlat(plat_info.ID_ALIMENT);
       document.getElementById('titreNouvPlat').value = (plat_info.NOM == "Plat n°") ? plat_info.NOM + plat_info.ID_ALIMENT : plat_info.NOM;
       document.getElementById('idNouvPlat').value = plat_info.ID_ALIMENT;
+      document.getElementById('regime-alim-nouv-plat').value = plat_info.ID_REGIME;
     })
     .catch(error => {
       console.error('Erreur :', error);

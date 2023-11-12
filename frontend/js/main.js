@@ -55,7 +55,7 @@ function afficherAlimentsPlat(id) {
         {
           data: 'ID_ALIMENT',
           render: function (data) {
-            return '<input type="number" class="quantite" id="' + data + '">'
+            return '<input type="number" value="100" class="quantite" id="' + data + '">'
           }
         }
 
