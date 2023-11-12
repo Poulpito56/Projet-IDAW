@@ -1,7 +1,4 @@
 const requestVerifType3 = new XMLHttpRequest();
-
-// button.addEventListener("click", afficherNom)
-
 function consumeDish(id_aliment) {
   var today = new Date();
 
@@ -26,7 +23,17 @@ function consumeDish(id_aliment) {
     .catch(error => {
       console.error('Erreur :', error);
     });
+
+  btn = document.getElementById(`consume-button-${id_aliment}`)
+  displayConsumedDish(id_aliment);
+  btn.disabled = true;
+  setTimeout(function() {
+    btn.innerHTML = "Ajouter";
+    btn.disabled = false;
+    displayAddDish();
+  }, 1000);
 }
+
 
 
 function verifType3Log(log) {

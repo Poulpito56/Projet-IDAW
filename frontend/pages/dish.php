@@ -6,6 +6,11 @@
       elements[i].innerHTML = "<?php echo $tra->add; ?>";
     }
   }
+
+  function displayConsumedDish(id_aliment) {
+    btn = document.getElementById(`consume-button-${id_aliment}`);
+    btn.innerHTML = "<?php echo $tra->added; ?>"
+  }
 </script>
 <script src="js/main.js"></script>
 <script>
