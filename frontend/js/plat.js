@@ -60,7 +60,7 @@ requestVerifType3.onreadystatechange = function () {
 function ajoutPlatTemp() {
 
   const log = getUser();
-  const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1024px-Flat_tick_icon.svg.png" };
+  const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://cdn-icons-png.flaticon.com/512/4659/4659180.png" };
   fetch('http://localhost/Projet%20IDAW/backend/aliment.php?', {
     method: 'POST',
     headers: {
