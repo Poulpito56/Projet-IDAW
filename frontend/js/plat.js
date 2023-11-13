@@ -26,12 +26,6 @@ function consumeDish(id_aliment) {
 
   btn = document.getElementById(`consume-button-${id_aliment}`)
   displayConsumedDish(id_aliment);
-  btn.disabled = true;
-  setTimeout(function() {
-    btn.innerHTML = "Ajouter";
-    btn.disabled = false;
-    displayAddDish();
-  }, 1000);
 }
 
 

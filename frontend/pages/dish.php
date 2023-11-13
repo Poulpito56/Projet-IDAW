@@ -10,6 +10,12 @@
   function displayConsumedDish(id_aliment) {
     btn = document.getElementById(`consume-button-${id_aliment}`);
     btn.innerHTML = "<?php echo $tra->added; ?>"
+    btn.disabled = true;
+    setTimeout(function() {
+      btn.innerHTML = "<?php echo $tra->add; ?>";
+      btn.disabled = false;
+      displayAddDish();
+    }, 300);
   }
 </script>
 <script src="js/main.js"></script>
