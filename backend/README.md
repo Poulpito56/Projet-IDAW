@@ -37,3 +37,21 @@ API contenir
 | Ecrire       | POST |         |`backend/contenir.php/{id_aliment}{ali_id_aliment}{poids}`| Créer une contenance d'un aliment dans un plat (tous les paramètres sont obligatoires) |
 | Supprimer    | DELETE |       |`backend/contenir.php/{id_aliment}{ali_id_aliment}`| Supprime la contenance de l'aliment dans la plat dont les id sont renseignés|
 | Modifier     | PUT   |        |`backend/contenir.php/{id_aliment}{ali_id_aliment}{poids}`| Modifie le poids de l'aliment contenu dans le plat renseigné |
+
+
+API user_connexion
+----------
+
+| Action       | HTTP | Payload |        URL       |   Description     |
+| :----------: | :--: | :-----: |:---------------: |:----------------: |
+| Lire         | POST |  json   |`backend/user_connexion.php/{login}{password}`| Retourne si l'assocation login et password existe en tant qu'utilisateur dans la base de données |
+
+
+API user
+----------
+
+| Action       | HTTP | Payload |        URL       |   Description     |
+| :----------: | :--: | :-----: |:---------------: |:----------------: |
+| Lire         | GET  |  json   |`backend/user.php/{login}`| Retoure le regime, le sexe, le mail, l'age, et l'activité physique de la personne associé au login|
+| Ecrire       | POST |         |`backend/user.php/{login}{password}{id_regime}{mail}{sexe}{age}{sport}`| Créer un utilisateur qui n'est pas admin avec les informations renseignées |
+| Modifier     | PUT  |         |`backend/user.php/{login}{id_regime}{mail}{sexe}{age}{sport}`| Modifie le regime, le sexe, le mail, l'age, ou l'activité physique de la personne associé au login |
