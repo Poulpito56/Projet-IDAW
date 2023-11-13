@@ -18,7 +18,7 @@
   "email": "Email",
   "age": "Age",
   "dietary_preferences": "Régime alimentaire",
-  "physical_activity": "Activitée physique",
+  "physical_activity": "Activitée physique  (/10)",
   "omnivore": "Omnivore",
   "pescetarian": "Pescétarien",
   "vegetarian": "Végétarien",

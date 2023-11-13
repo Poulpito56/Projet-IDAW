@@ -36,3 +36,7 @@ header {
   gap: 30px;
   padding-right: 10px;
 }
+
+.active-nav-button {
+  opacity: 0.5;
+}
