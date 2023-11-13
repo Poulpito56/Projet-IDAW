@@ -125,7 +125,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $updates = [];
 
       if (isset($data->id_regime)) {
-        $updates[] = "ID_REGIME = {$data->id_regime}";
+        $updates[] = "POIDS = {$data->poids}";
       }
 
 
