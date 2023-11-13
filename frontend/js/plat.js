@@ -9,7 +9,7 @@ function consumeDish(id_aliment) {
 
   // Formatez la date au format "yyyy-mm-dd"
   var formattedDate = year + '-' + month + '-' + day;
-  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+  fetch(apiPath + 'backend/consommer.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function consumeDish(id_aliment) {
 
 
 function verifType3Log(log) {
-  requestVerifType3.open("GET", "http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login=" + log, true);
+  requestVerifType3.open("GET", apiPath + "backend/aliment.php?type=3&login=" + log, true);
   requestVerifType3.send();
 }
 
@@ -55,7 +55,7 @@ function ajoutPlatTemp() {
 
   const log = getUser();
   const platTemp = { "id_aliment": 0, "nom": "Plat n°", "type": 3, "image_url": "https://cdn-icons-png.flaticon.com/512/4659/4659180.png" };
-  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?', {
+  fetch(apiPath + 'backend/aliment.php?', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ function ajoutPlatTemp() {
     })
     .then(result => {
       const logIdAli = { "login": log, "id_aliment": result.id };
-      fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+      fetch(apiPath + 'backend/consommer.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

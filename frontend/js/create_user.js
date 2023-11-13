@@ -48,6 +48,6 @@ function insertNewUser() {
     age: (age !== "") ? age : null,
     sport: (physical_activity !== "") ? physical_activity : null
   };
-  request.open("POST", "http://localhost/Projet%20IDAW/backend/user.php", true);
+  request.open("POST", apiPath + "backend/user.php", true);
   request.send(JSON.stringify(personne))
 }

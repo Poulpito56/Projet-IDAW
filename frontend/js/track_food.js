@@ -41,7 +41,7 @@ function formatDateToYMD(dateString) {
 }
 
 function deleteConso(id_conso) {
-  fetch(`http://localhost/Projet%20IDAW/backend/consommer.php?id_consommation=${id_conso}`, {
+  fetch(apiPath + `backend/consommer.php?id_consommation=${id_conso}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ function validateConso(id_conso) {
   nouvelleDate = date[0].value
   dateField[0].innerHTML = `${formatDateToDMY(nouvelleDate)}`;
 
-  fetch('http://localhost/Projet%20IDAW/backend/consommer.php', {
+  fetch(apiPath + 'backend/consommer.php', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ function validateConso(id_conso) {
 
 function displayConso(consommation) {
   id_aliment = consommation['ID_ALIMENT'];
-  return fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id_aliment}`)
+  return fetch(apiPath + `backend/aliment.php?id_aliment=${id_aliment}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);
@@ -210,10 +210,10 @@ request.onreadystatechange = function () {
 
 dateSelection = document.getElementById('date_selection');
 
-request.open("GET", `http://localhost/Projet%20IDAW/backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
+request.open("GET", apiPath + `backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
 request.send()
 
 dateSelection.addEventListener("change", function () {
-  request.open("GET", `http://localhost/Projet%20IDAW/backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
+  request.open("GET", apiPath + `backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
   request.send()
 });

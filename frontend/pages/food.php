@@ -16,7 +16,7 @@
   }
 
   function addToSup(idPlat) {
-    fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${idPlat}`, {
+    fetch(apiPath + `backend/contenir.php?id_aliment=${idPlat}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

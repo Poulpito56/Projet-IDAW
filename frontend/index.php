@@ -1,4 +1,5 @@
 <?php
+require_once('config.php');
 // Démarrer la session
 session_start();
 
@@ -37,8 +38,10 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
 
 <head>
   <script>
+    const apiPath = '<?php echo API_PATH; ?>';
+
     function getUser() {
-      return '<?php echo $_SESSION['utilisateur']; ?>'
+      return '<?php echo isset($_SESSION['utilisateur']) ? $_SESSION['utilisateur'] : ''; ?>'
     }
   </script>
   <link rel="stylesheet" href="css/connexion.css">

@@ -34,6 +34,6 @@ function modifyUser() {
     age: (age !== "") ? age : null,
     sport: (physical_activity !== "") ? physical_activity : null
   };
-  request.open("PUT", "http://localhost/Projet%20IDAW/backend/user.php", true);
+  request.open("PUT", apiPath + "backend/user.php", true);
   request.send(JSON.stringify(personne))
 }

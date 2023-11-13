@@ -40,6 +40,6 @@ function connexion() {
     login: document.getElementById('login').value,
     password: document.getElementById('password').value
   };
-  request.open("POST", "http://localhost/Projet%20IDAW/backend/user_connexion.php", true);
+  request.open("POST", apiPath + "backend/user_connexion.php", true);
   request.send(JSON.stringify(personne))
 }

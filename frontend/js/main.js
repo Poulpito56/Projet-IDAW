@@ -4,7 +4,7 @@ function afficherAlimentsType2Log(login) {
   $(document).ready(function () {
     $("#alimentT2Table").DataTable({
       ajax: {
-        url: "http://localhost/Projet%20IDAW/backend/aliment.php?type=2&login=" + login,
+        url: apiPath + "backend/aliment.php?type=2&login=" + login,
         dataSrc: ''
       },
       columns: [
@@ -34,7 +34,7 @@ function afficherAlimentsPlat(id) {
   $(document).ready(function () {
     $("#alimentTablePlat").DataTable({
       ajax: {
-        url: "http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=" + id,
+        url: apiPath + "backend/contenir.php?id_aliment=" + id,
         dataSrc: ''
       },
       columns: [

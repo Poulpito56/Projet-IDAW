@@ -12,7 +12,7 @@
 <p id="messageProfile"></p>
 <script>
   var user = "<?php echo $_SESSION['utilisateur']; ?>";
-  fetch(`http://localhost/Projet%20IDAW/backend/user.php?login=${user}`)
+  fetch(apiPath + `backend/user.php?login=${user}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);

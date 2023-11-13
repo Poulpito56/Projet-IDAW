@@ -16,7 +16,7 @@ function ajout_aliment() {
   };
   const quantites = document.getElementsByClassName('quantite');
   if (quantites.length == 0) {
-    fetch('http://localhost/Projet%20IDAW/backend/aliment.php', {
+    fetch(apiPath + 'backend/aliment.php', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function ajout_aliment() {
 
   } else {
 
-    fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
+    fetch(apiPath + `backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ function ajout_aliment() {
           const id = quantites[i].id;
           const val = quantites[i].value;
           poidsTotal = poidsTotal + parseFloat(val);
-          fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id}`, {
+          fetch(apiPath + `backend/aliment.php?id_aliment=${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function ajout_aliment() {
                 donnees.graisses_saturees = donnees.graisses_saturees / poidsTotal;
                 donnees.sucre = donnees.sucre / poidsTotal;
                 console.log(poidsTotal);
-                fetch('http://localhost/Projet%20IDAW/backend/aliment.php', {
+                fetch(apiPath + 'backend/aliment.php', {
                   method: 'PUT',
                   headers: {
                     'Content-Type': 'application/json'
@@ -128,7 +128,7 @@ function validerNouvPlat() {
   };
   const quantites = document.getElementsByClassName('quantite');
 
-  fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
+  fetch(apiPath + `backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -148,7 +148,7 @@ function validerNouvPlat() {
         const id = input.id;
         const val = input.value;
         poidsTotal = poidsTotal + val;
-        fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id}`, {
+        fetch(apiPath + `backend/aliment.php?id_aliment=${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ function validerNouvPlat() {
             donnees.graisses_saturees = donnees.graisses_saturees + val * result[0].GRAISSES_SATUREES / poidsTotal;
             donnees.sucre = donnees.sucre + val * result[0].SUCRE / poidsTotal;
 
-            fetch('http://localhost/Projet%20IDAW/backend/aliment.php', {
+            fetch(apiPath + 'backend/aliment.php', {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json'

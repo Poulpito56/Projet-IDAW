@@ -36,7 +36,7 @@ function comparerDates(a, b) {
 }
 
 function getAlimentById(id_aliment) {
-  return fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id_aliment}`)
+  return fetch(apiPath + `backend/aliment.php?id_aliment=${id_aliment}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);
@@ -46,7 +46,7 @@ function getAlimentById(id_aliment) {
 }
 
 function calculEnergie() {
-  return fetch(`http://localhost/Projet%20IDAW/backend/user.php?login=${user}`)
+  return fetch(apiPath + `backend/user.php?login=${user}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);
@@ -151,10 +151,10 @@ request.onreadystatechange = function () {
   }
 };
 
-request.open("GET", `http://localhost/Projet%20IDAW/backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
+request.open("GET", apiPath + `backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
 request.send()
 
 dateSelection.addEventListener("change", function () {
-  request.open("GET", `http://localhost/Projet%20IDAW/backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
+  request.open("GET", apiPath + `backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
   request.send()
 });
