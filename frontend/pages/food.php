@@ -6,6 +6,7 @@
       elements[i].innerHTML = "<?php echo $tra->add; ?>";
     }
   }
+
   function displaySup() {
     var elements = document.getElementsByClassName('sup-food-to-dish-button');
 
@@ -14,13 +15,13 @@
     }
   }
 
-  function addToSup(idPlat){
+  function addToSup(idPlat) {
     fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${idPlat}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -31,7 +32,7 @@
       .then(result => {
         for (const ali of result) {
           const idAli = ali.ID_ALIMENT
-          but = document.getElementById('button-'+idAli);
+          but = document.getElementById('button-' + idAli);
           but.classList.remove('add-food-to-dish-button');
           but.classList.add('sup-food-to-dish-button');
           but.classList.add('red-background');
@@ -43,29 +44,31 @@
         mess = document.getElementById('messageFood');
         mess.innerHTML = error;
       })
-  } 
+  }
 </script>
 <script src="js/food.js" defer></script>
 <script src="js/main.js" async></script>
-<h2 id="pasDePlat"></h2>
-<table id="alimentTable" class="display nowrap" style="width:100%">
-  <thead>
-    <tr>
-      <th scope="col">Selectionner</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Energie</th>
-      <th scope="col">Image</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="food-container">
+  <div class="add-dish-field-title" id="pasDePlat"><?php echo $tra->add_food; ?></div>
+  <table id="alimentTable" class="display nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col"><?php echo $tra->select; ?></th>
+        <th scope="col"><?php echo $tra->name; ?></th>
+        <th scope="col"><?php echo $tra->energy; ?></th>
+        <th scope="col"><?php echo $tra->image; ?></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
-<form method="GET">
-  <button type="submit" class="text-button">
-    <input type="hidden" name="page" value="add_dish">
-    <?php echo $tra->validate; ?>
-  </button>
-</form>
+  <form method="GET" class="bot-buttons">
+    <button type="submit" class="text-button">
+      <input type="hidden" name="page" value="add_dish">
+      <?php echo $tra->validate; ?>
+    </button>
+  </form>
 
-<p id="messageFood"></p>
+  <p id="messageFood"></p>
+</div>

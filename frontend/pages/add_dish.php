@@ -23,10 +23,10 @@
     <table id="alimentTablePlat" class="display nowrap" style="width:100%">
       <thead>
         <tr>
-          <th scope="col">Nom</th>
-          <th scope="col">Energie</th>
-          <th scope="col">Image</th>
-          <th scope="col">Quantité</th>
+          <th scope="col"><?php echo $tra->name; ?></th>
+          <th scope="col"><?php echo $tra->energy; ?></th>
+          <th scope="col"><?php echo $tra->image; ?></th>
+          <th scope="col"><?php echo $tra->quantity; ?></th>
         </tr>
       </thead>
       <tbody>

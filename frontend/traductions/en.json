@@ -7,8 +7,8 @@
   "log_out": "Log out",
   "language": "Language",
   "dish": "Dish",
-  "add_food": "Add a food",
-  "add_dish": "Add a dish",
+  "add_food": "Add food",
+  "add_dish": "Add dish",
   "login": "Username",
   "name": "Name",
   "quantity": "Quantity (g)",
@@ -33,7 +33,7 @@
   "delete": "Delete",
   "hide_pasword": "Hide password",
   "track_food": "Track food",
-  "validate": "Validate",
+  "validate": "Confirm",
   "back": "Back",
   "last_day": "Last day",
   "last_month": "Last month",
@@ -41,5 +41,8 @@
   "last_week": "Last week",
   "titleDish": "Dish title",
   "add": "Add",
+  "select": "Select",
+  "image": "Image",
+  "energy": "Energy",
   "added": "Added"
 }

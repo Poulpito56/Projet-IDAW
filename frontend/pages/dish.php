@@ -25,25 +25,22 @@
 </script>
 <script src="js/plat.js" defer></script>
 
+<div class="dish-container">
+  <table id="alimentT2Table" class="display nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"><?php echo $tra->name; ?></th>
+        <th scope="col"><?php echo $tra->energy; ?></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
+  <div class="bot-buttons">
+    <input type="button" id="ajout_plat" value="<?php echo $tra->add_dish; ?>" class="text-button" onclick="verifType3Log('<?php echo $_SESSION['utilisateur'] ?>')">
+  </div>
 
-<table id="alimentT2Table" class="display nowrap" style="width:100%">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Nom</th>
-      <th scope="col">Energie</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-
-<input type="button" id="ajout_plat" value="<?php echo $tra->add_dish; ?>" class="text-button" onclick="verifType3Log('<?php echo $_SESSION['utilisateur'] ?>')">
-
-
-
-
-
-<p id="messageAjoutPlat"></p>
+  <p id="messageAjoutPlat"></p>
+</div>
