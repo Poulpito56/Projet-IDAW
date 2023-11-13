@@ -11,7 +11,7 @@ if (isset($_GET['lang'])) {
   }
 }
 
-// La page par défaut est track_food
+// La page par défaut est journal
 if (isset($_GET['page'])) {
   $page = $_GET['page'];
   if (($page !== 'connexion' && $page !== 'create_user') || !isset($_SESSION['utilisateur'])) {
@@ -19,7 +19,7 @@ if (isset($_GET['page'])) {
   }
 } else {
   if (!isset($_SESSION['page'])) {
-    $_SESSION['page'] = 'track_food';
+    $_SESSION['page'] = 'journal';
   }
 }
 

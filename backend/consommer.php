@@ -37,7 +37,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
       echo json_encode(["message" => "Les champs manquants."]);
     } else {
       $date = isset($data->date_consommation) ? $data->date_consommation : "null";
-      $quantite = isset($data->quantite) ? $data->quantite : "null";
+      $quantite = isset($data->quantite) ? $data->quantite : 500;
 
       $sql = "INSERT INTO CONSOMMER (LOGIN,ID_ALIMENT,DATE_CONSOMMATION,QUANTITE)
               VALUES ('$data->login',$data->id_aliment,$date,$quantite)";
