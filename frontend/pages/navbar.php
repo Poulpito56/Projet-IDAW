@@ -1,6 +1,6 @@
 <div class="navbar">
   <?php
-  if ($_SESSION['page'] === 'track_food') {
+  if ($_SESSION['page'] === 'track_food' || $_SESSION['page'] === 'journal') {
     require_once('pages/date_selection.php');
   }
   ?>

@@ -11,7 +11,7 @@
   "add_dish": "Add a dish",
   "login": "Username",
   "name": "Name",
-  "quantity": "Quantity",
+  "quantity": "Quantity (g)",
   "date": "Date",
   "password": "Password",
   "gender": "Gender",

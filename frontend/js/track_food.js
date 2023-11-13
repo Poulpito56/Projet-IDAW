@@ -188,7 +188,7 @@ request.onreadystatechange = function () {
         consommation = rep[key];
         row.id = "id_consommation_" + consommation['ID_CONSOMMATION'];
 
-        const fields = displayConso(consommation)
+        const fields = displayConso(consommation);
 
         fields.then(data => {
 
