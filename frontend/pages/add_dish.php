@@ -1,42 +1,50 @@
 <script src="js/main.js" defer></script>
 <script src="js/ajout_plat.js"></script>
-<div class="custom-table-field">
-  <h2 class="field-name"><?php echo ($tra->titleDish) . " :"; ?></h2>
-  <input class="text-input" type="text" id="titreNouvPlat" pattern="[A-Za-z0-9 ]">
-  <input type="hidden" id="idNouvPlat">
-</div>
-<h3 class="field-name"><?php echo ($tra->food) . " :"; ?></h3>
-<table id="alimentTablePlat" class="display nowrap" style="width:100%">
-  <thead>
-    <tr>
-      <th scope="col">Nom</th>
-      <th scope="col">Energie</th>
-      <th scope="col">Image</th>
-      <th scope="col">Quantité</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="add-dish-container">
 
-<div class="custom-table-field">
-  <div class="field-name"><?php echo $tra->dietary_preferences; ?></div>
-  <select class="text-input" id='regime-alim-nouv-plat'>
-    <option value="1"><?php echo $tra->omnivore; ?></option>
-    <option value="2"><?php echo $tra->pescetarian; ?></option>
-    <option value="3"><?php echo $tra->vegetarian; ?></option>
-    <option value="4"><?php echo $tra->vegan; ?></option>
-  </select>
+  <div class="add-dish-field">
+    <div class="add-dish-field-title"><?php echo ($tra->titleDish) . " :"; ?></div>
+    <input class="text-input brown-border add-dish-input" type="text" id="titreNouvPlat" pattern="[A-Za-z0-9 ]">
+    <input type="hidden" id="idNouvPlat">
+  </div>
+
+  <div class="add-dish-field">
+    <div class="add-dish-field-title"><?php echo $tra->dietary_preferences . " : "; ?></div>
+    <select class="text-input brown-border add-dish-input" id='regime-alim-nouv-plat'>
+      <option value="1"><?php echo $tra->omnivore; ?></option>
+      <option value="2"><?php echo $tra->pescetarian; ?></option>
+      <option value="3"><?php echo $tra->vegetarian; ?></option>
+      <option value="4"><?php echo $tra->vegan; ?></option>
+    </select>
+  </div>
+
+  <div class="add-dish-aliment-list">
+    <div class="add-dish-field-title"><?php echo ($tra->food) . " :"; ?></div>
+    <table id="alimentTablePlat" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Energie</th>
+          <th scope="col">Image</th>
+          <th scope="col">Quantité</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div>
+      <button class="text-button" onclick="ajout_aliment()"><?php echo $tra->add_food; ?></button>
+    </div>
+  </div>
+
+  <div class="bot-buttons">
+    <button class="text-button" onclick="validerNouvPlat()"><?php echo $tra->validate; ?></button>
+  </div>
 </div>
 
-<tr>
-  <td id="validate-button-dish"><input class="text-button" type="button" value="<?php echo $tra->add_food; ?>" onclick="ajout_aliment()"/></td>
-  <td id="validate-button-dish"><input class="text-button" type="button" value="<?php echo $tra->validate; ?>" onclick="validerNouvPlat()"/></td>
-</tr>
 
 <script>
-
-  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login='+'<?php echo $_SESSION['utilisateur'] ?>')
+  fetch('http://localhost/Projet%20IDAW/backend/aliment.php?type=3&login=' + '<?php echo $_SESSION['utilisateur'] ?>')
     .then(response => {
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);

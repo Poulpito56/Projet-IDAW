@@ -19,7 +19,9 @@
   padding: 10px;
 }
 
-.consomation-aliment-field {}
+.journal-container {
+  padding: 20px;
+}
 
 .consomation-aliment-image {
   height: 100px;

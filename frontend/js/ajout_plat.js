@@ -1,5 +1,5 @@
 
-function ajout_aliment(){
+function ajout_aliment() {
   const donnees = {
     id_aliment: document.getElementById("idNouvPlat").value,
     id_regime: document.getElementById("regime-alim-nouv-plat").value,
@@ -15,7 +15,7 @@ function ajout_aliment(){
     sucre: 0,
   };
   const quantites = document.getElementsByClassName('quantite');
-  if(quantites.length == 0) {
+  if (quantites.length == 0) {
     fetch('http://localhost/Projet%20IDAW/backend/aliment.php', {
       method: 'PUT',
       headers: {
@@ -25,18 +25,18 @@ function ajout_aliment(){
     }).then(data => {
       window.location.href = "?page=food"
     })
-    .catch(error => {
-      console.error('Erreur :', error);
-    });
+      .catch(error => {
+        console.error('Erreur :', error);
+      });
 
   } else {
 
     fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -51,7 +51,7 @@ function ajout_aliment(){
           const id = quantites[i].id;
           const val = quantites[i].value;
           poidsTotal = poidsTotal + parseFloat(val);
-        fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id}`, {
+          fetch(`http://localhost/Projet%20IDAW/backend/aliment.php?id_aliment=${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -75,10 +75,10 @@ function ajout_aliment(){
               donnees.graisses_saturees = donnees.graisses_saturees + val * result[0].GRAISSES_SATUREES;
               donnees.sucre = donnees.sucre + val * result[0].SUCRE;
 
-              if(i == quantites.length - 1) {
+              if (i == quantites.length - 1) {
 
                 donnees.glucide = donnees.glucide / poidsTotal;
-                donnees.energie = donnees.energie / poidsTotal ;
+                donnees.energie = donnees.energie / poidsTotal;
                 donnees.gras = donnees.gras / poidsTotal;
                 donnees.fibre = donnees.fibre / poidsTotal;
                 donnees.proteine = donnees.proteine / poidsTotal;
@@ -95,9 +95,9 @@ function ajout_aliment(){
                 }).then(data => {
                   window.location.href = "?page=food"
                 })
-                .catch(error => {
-                  console.error('Erreur :', error);
-                });
+                  .catch(error => {
+                    console.error('Erreur :', error);
+                  });
               }
             })
             .catch(error => {
@@ -111,7 +111,7 @@ function ajout_aliment(){
   }
 }
 
-function validerNouvPlat(){
+function validerNouvPlat() {
   const donnees = {
     id_aliment: document.getElementById("idNouvPlat").value,
     id_regime: document.getElementById("regime-alim-nouv-plat").value,
@@ -129,20 +129,20 @@ function validerNouvPlat(){
   const quantites = document.getElementsByClassName('quantite');
 
   fetch(`http://localhost/Projet%20IDAW/backend/contenir.php?id_aliment=${donnees.id_aliment}&somme=1`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        // Parse the JSON content of the response
-        return response.json();
-      })
-      .then(result => {
-        var poidsTotal = 0;
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      // Parse the JSON content of the response
+      return response.json();
+    })
+    .then(result => {
+      var poidsTotal = 0;
 
       for (const input of quantites) {
         const id = input.id;
@@ -180,16 +180,16 @@ function validerNouvPlat(){
             }).then(data => {
               window.location.href = "?page=dish"
             })
-            .catch(error => {
-              console.error('Erreur :', error);
-            });
+              .catch(error => {
+                console.error('Erreur :', error);
+              });
           })
           .catch(error => {
             console.error(error);
           })
-        }
-      })
+      }
+    })
     .catch(error => {
       console.error(error);
     })
- }
+}

@@ -45,6 +45,7 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/track_food.css">
+  <link rel="stylesheet" href="css/food.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

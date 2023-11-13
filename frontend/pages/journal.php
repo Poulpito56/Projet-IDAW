@@ -4,7 +4,7 @@
 </script>
 <script src="js/journal.js" defer>
 </script>
-<div id="journal_container" class="journal-container">
+<div id="journal-container" class="journal-container">
   <canvas id="monGraphique" width="400" height="200"></canvas>
 </div>
 <p id="journal_error_message"></p>
