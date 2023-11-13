@@ -42,7 +42,6 @@
 </div>
 <script>
   const actualPage = document.getElementById("navbar_button_page_<?php echo $_SESSION['page']; ?>");
-  console.log(actualPage)
 
   // Vérifier si l'élément avec l'ID existe
   if (actualPage) {

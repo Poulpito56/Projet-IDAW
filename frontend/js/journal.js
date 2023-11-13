@@ -1,5 +1,26 @@
 const request = new XMLHttpRequest();
 
+// Récupérer le contexte du canevas
+const ctx = document.getElementById('monGraphique').getContext('2d');
+var monGraphique = new Chart(ctx, {});
+
+dateSelection = document.getElementById('date_selection');
+
+function initEnargyData(date) {
+  const dateDebut = new Date(date);
+  dateDebut.setDate(dateDebut.getDate() + 1);
+  const dateActuelle = new Date();
+  const objetDates = {};
+
+  // Boucle à travers les dates depuis la date de début jusqu'à la date actuelle
+  for (let dateCourante = dateDebut; dateCourante <= dateActuelle; dateCourante.setDate(dateCourante.getDate() + 1)) {
+    const cle = dateCourante.toLocaleDateString('fr-FR'); // Format "dd/mm/yyyy"
+    objetDates[cle] = 0;
+  }
+
+  return objetDates;
+}
+
 function formatDateToDMY(dateString) {
   var parts = dateString.split("-");
   if (parts.length === 3) {
@@ -9,11 +30,6 @@ function formatDateToDMY(dateString) {
     return "Format de date invalide";
   }
 }
-
-// Récupérer le contexte du canevas
-const ctx = document.getElementById('monGraphique').getContext('2d');
-
-var monGraphique = new Chart(ctx, {});
 
 function comparerDates(a, b) {
   return new Date(a.DATE_CONSOMMATION) - new Date(b.DATE_CONSOMMATION);
@@ -29,38 +45,78 @@ function getAlimentById(id_aliment) {
     })
 }
 
+function calculEnergie() {
+  return fetch(`http://localhost/Projet%20IDAW/backend/user.php?login=${user}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erreur lors de la requête : ${response.status} - ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      return data[0];
+    })
+    .then(data => {
+      const age = data['AGE'] ?? 30;
+      const poids = data['POIDS'] ?? 70;
+      const taille = data['TAILLE'] ?? 170;
+      const genre = data['SEXE'] ?? 1;
+      const activitePhysique = data['SPORT'] ?? 5;
+
+      let bmr;
+
+      if (genre === 3) { // homme
+        bmr = 88.362 + (13.397 * poids) + (4.799 * taille) - (5.677 * age);
+      } else if (genre === 2) { // femme
+        bmr = 447.593 + (9.247 * poids) + (3.098 * taille) - (4.330 * age);
+      } else { // non spécifié
+        bmr = 10 * poids + 6.25 * taille - 5 * age + 5;
+      }
+
+      const facteurActivite = (1.3 / 9) * activitePhysique + (1.2 - 1.3 / 9);
+
+      const tee = bmr * facteurActivite;
+
+      return tee;
+    })
+}
+
 function displayGraph(graphData) {
 
-  monGraphique.destroy();
-
   const numberOfDays = Object.keys(graphData).length;
-  const recommandtions = new Array(numberOfDays).fill(2500); // à modifier quand on fera le calcul de l'énergie moyenne
+  const recommandedEnergy = calculEnergie();
+  recommandedEnergy.then(data => {
+    const recommandtions = new Array(numberOfDays).fill(data);
 
-  // Créer le graphique à barres
-  monGraphique = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: Object.keys(graphData),  // Les abscisses
-      datasets: [{
-        label: 'Kcal',
-        data: Object.values(graphData),  // Les ordonnées
-        backgroundColor: '#aad17d40',
-        borderColor: '#aad17d',  // Couleur de la bordure des barres
-        borderWidth: 1
-      }, {
-        type: 'line',
-        label: 'Recommandation',
-        data: recommandtions,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+    monGraphique.destroy();
+
+    // Créer le graphique à barres
+    monGraphique = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(graphData),  // Les abscisses
+        datasets: [{
+          label: 'Kcal',
+          data: Object.values(graphData),  // Les ordonnées
+          backgroundColor: '#aad17d40',
+          borderColor: '#aad17d',  // Couleur de la bordure des barres
+          borderWidth: 1
+        }, {
+          type: 'line',
+          label: 'Recommandation',
+          data: recommandtions,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
-    }
-  });
+    });
+  })
+
 }
 
 request.onreadystatechange = function () {
@@ -76,16 +132,11 @@ request.onreadystatechange = function () {
       // Trier le tableau en utilisant la fonction de comparaison
       rep.sort(comparerDates);
 
-      let enargyData = {};
+      let enargyData = initEnargyData(dateSelection.value);
 
       rep.forEach(element => {
         const aliment = getAlimentById(element['ID_ALIMENT']);
         const date = formatDateToDMY(element['DATE_CONSOMMATION'])
-
-        // Vérifier si la date existe déjà dans l'objet enargyData
-        if (!enargyData[date]) {
-          enargyData[date] = 0;
-        }
 
         aliment
           .then(data => {
@@ -99,8 +150,6 @@ request.onreadystatechange = function () {
     }
   }
 };
-
-dateSelection = document.getElementById('date_selection');
 
 request.open("GET", `http://localhost/Projet%20IDAW/backend/consommer.php?login=${user}&date_consommation=${dateSelection.value}`, true);
 request.send()
