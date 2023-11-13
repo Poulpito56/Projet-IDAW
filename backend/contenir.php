@@ -23,21 +23,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
       }
 
-    } elseif (isset($_GET['id_aliment']) && isset($_GET['somme'])) {
-
-      $id = $_GET['id_aliment'];
-
-      $request = $pdo->prepare("SELECT SUM(POIDS) AS POIDSTOTAL FROM CONTENIR WHERE ID_ALIMENT = '" . $id . "'");
-
-
-      if ($request->execute()) {
-        $reponse = $request->fetchAll(PDO::FETCH_OBJ);
-        http_response_code(200);
-        echo json_encode($reponse);
-      } else {
-        http_response_code(500);
-        echo json_encode(["message" => "Erreur lors de l'affichage des aliments."]);
-      }
     } elseif (isset($_GET['id_aliment'])) {
 
       $id = $_GET['id_aliment'];
