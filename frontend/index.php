@@ -62,6 +62,8 @@ $tra = json_decode(file_get_contents('traductions/' . $_SESSION['lang'] . '.json
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
   <link src="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <title>I Manger Mieux</title>
+  <link rel="icon" type="image/png" href="imgs/logos/i_manger_mieux.png">
 </head>
 
 <body>
