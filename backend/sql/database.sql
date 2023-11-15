@@ -5,8 +5,6 @@
 
 drop table if exists CONTENIR;
 
-drop table if exists ALLERGIE;
-
 drop table if exists CONSOMMER;
 
 drop table if exists PERSONNE;
@@ -44,16 +42,6 @@ create table ALIMENT
    SODIUM               decimal(7,3) null,
    SULFATE              decimal(7,3) null,
    primary key (ID_ALIMENT)
-);
-
-/*==============================================================*/
-/* Table : ALLERGIE                                             */
-/*==============================================================*/
-create table ALLERGIE
-(
-   LOGIN                char(63) not null,
-   ID_ALIMENT           BIGINT,
-   primary key (LOGIN, ID_ALIMENT)
 );
 
 /*==============================================================*/
@@ -110,12 +98,6 @@ create table REGIME_ALIMENTAIRE
 
 alter table ALIMENT add constraint FK_RESPECTER foreign key (ID_REGIME)
       references REGIME_ALIMENTAIRE (ID_REGIME) on delete restrict on update cascade;
-
-alter table ALLERGIE add constraint FK_ALLERGIE foreign key (LOGIN)
-      references PERSONNE (LOGIN) on delete restrict on update cascade;
-
-alter table ALLERGIE add constraint FK_ALLERGIE2 foreign key (ID_ALIMENT)
-      references ALIMENT (ID_ALIMENT) on delete restrict on update cascade;
 
 alter table CONSOMMER add constraint FK_CONSOMMER foreign key (LOGIN)
       references PERSONNE (LOGIN) on delete restrict on update cascade;
