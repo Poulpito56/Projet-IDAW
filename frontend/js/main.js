@@ -2,7 +2,7 @@
 
 function afficherAlimentsType2Log(login) {
   $(document).ready(function () {
-    $("#alimentT2Table").DataTable({
+    var tabAlimentT2 = $("#alimentT2Table").DataTable({
       ajax: {
         url: apiPath + "backend/aliment.php?type=2&login=" + login,
         dataSrc: ''
@@ -25,6 +25,9 @@ function afficherAlimentsType2Log(login) {
         }
       ]
     });
+    tabAlimentT2.on('draw.dt', function () {
+      displayAddDish();
+    })
   })
 
 }
