@@ -1,0 +1,18 @@
+Comme règles de gestion que nous avons implémentées dans notre base de données, nous pouvons citer : 
+
+- Pour la clé primaire de la table “PERSONNE”, nous avons choisi de prendre “LOGIN”
+ qui sert également d’identifiant de connexion pour être en adéquation avec le cahier
+ des charges.
+
+- Pour la clé primaire de la table “CONSOMMER” : Toute clé primaire ajoutée ou modifiée
+ dans la table CONSOMMER doit être unique et représenter de manière adéquate l'identifiant
+  de chaque enregistrement de consommation. Ainsi, nous avons choisi de rajouter une
+  clé primaire ID_CONSOMMATION pour qu’un même utilisateur puisse consommer plusieurs fois
+  un aliment, sans pour autant qu’il s’agisse de la même consommation.
+
+- Nous avons pris la décision de fusionner les informations sur l'eau avec celles des
+ autres aliments dans une même table, plutôt que de les séparer dans une table distincte.
+ Cette décision est basée sur la simplicité et la cohérence de la structure de la base
+ de données. Cette fusion vise à rationaliser la gestion des données en regroupant tous
+ les éléments alimentaires, y compris l'eau, au sein d'une seule table, simplifiant ainsi
+ les opérations de requête, de traitement et de maintenance de la base de données.
