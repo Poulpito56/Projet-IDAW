@@ -35,7 +35,7 @@
   "track_food": "Suivre l'alimentation",
   "validate": "Valider",
   "back": "Retour",
-  "last_day": "Dernier jour",
+  "last_year": "Dernière année",
   "last_month": "Dernier mois",
   "modify": "Modifier",
   "last_week": "Dernière semaine",
@@ -44,5 +44,7 @@
   "select": "Select",
   "image": "Image",
   "energy": "Energie",
-  "added": "Ajouté"
+  "added": "Ajouté",
+  "consume": "Manger",
+  "consumed": "Mangé"
 }

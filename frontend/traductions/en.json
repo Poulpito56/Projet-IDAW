@@ -35,7 +35,7 @@
   "track_food": "Track food",
   "validate": "Confirm",
   "back": "Back",
-  "last_day": "Last day",
+  "last_year": "Last year",
   "last_month": "Last month",
   "modify": "Modify",
   "last_week": "Last week",
@@ -44,5 +44,7 @@
   "select": "Select",
   "image": "Image",
   "energy": "Energy",
-  "added": "Added"
+  "added": "Added",
+  "consume": "Consume",
+  "consumed": "Consumed"
 }

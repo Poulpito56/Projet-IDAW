@@ -3,16 +3,16 @@
     var elements = document.getElementsByClassName('consume-dish-button');
 
     for (var i = 0; i < elements.length; i++) {
-      elements[i].innerHTML = "<?php echo $tra->add; ?>";
+      elements[i].innerHTML = "<?php echo $tra->consume; ?>";
     }
   }
 
   function displayConsumedDish(id_aliment) {
     btn = document.getElementById(`consume-button-${id_aliment}`);
-    btn.innerHTML = "<?php echo $tra->added; ?>"
+    btn.innerHTML = "<?php echo $tra->consumed; ?>"
     btn.disabled = true;
     setTimeout(function() {
-      btn.innerHTML = "<?php echo $tra->add; ?>";
+      btn.innerHTML = "<?php echo $tra->consume; ?>";
       btn.disabled = false;
       displayAddDish();
     }, 300);

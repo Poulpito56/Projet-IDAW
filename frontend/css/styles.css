@@ -33,7 +33,7 @@ body {
         background-color: var(--couleur-secondaire1);
 
         .tooltip {
-            opacity: 1;
+            opacity: 1 !important;
             transition-delay: 0.5s;
         }
     }
